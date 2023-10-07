@@ -1,0 +1,13 @@
+# Composer
+/vendor/
+composer.lock
+
+# CSFixer
+.php-cs-fixer.cache
+
+# PHPUnit
+.phpunit.result.cache
+coverage.xml
+
+# JetBrains
+.idea
