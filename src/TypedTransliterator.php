@@ -16,7 +16,7 @@ class TypedTransliterator
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): Transliterator {
         return Transliterator::create(
-            $transformationCollection->__toString(),
+            $transformationCollection->getIdentifierString(),
             match ($direction) {
                 TransliterationDirection::FORWARD => Transliterator::FORWARD,
                 TransliterationDirection::REVERSE => Transliterator::REVERSE,

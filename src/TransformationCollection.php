@@ -6,7 +6,7 @@ namespace PrinsFrank\TransliteratorWrapper;
 use PrinsFrank\TransliteratorWrapper\Transformation\TransformationInterface;
 use Stringable;
 
-class TransformationCollection implements Stringable
+class TransformationCollection
 {
     /** @var array<TransformationInterface> */
     private array $transformations;
@@ -26,11 +26,11 @@ class TransformationCollection implements Stringable
         return $this;
     }
 
-    public function __toString(): string
+    public function getIdentifierString(): string
     {
         $string = '';
         foreach ($this->transformations as $transformation) {
-            $string .= $transformation->__toString();
+            $string .= $transformation->getIdentifierString();
         }
 
         return $string;

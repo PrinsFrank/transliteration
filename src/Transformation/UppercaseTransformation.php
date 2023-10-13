@@ -9,7 +9,7 @@ class UppercaseTransformation implements TransformationInterface
         private readonly ?string $onlyChars = null
     ) { }
 
-    public function __toString(): string
+    public function getIdentifierString(): string
     {
         $string = '';
         if ($this->onlyChars !== null & $this->onlyChars !== '') {
