@@ -16,7 +16,7 @@
     "require": {
         "php": "^8.1 || ^8.2",
         "ext-intl": "*",
-        "prinsfrank/standards": "^2.3.0"
+        "prinsfrank/standards": "^3.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.4",
