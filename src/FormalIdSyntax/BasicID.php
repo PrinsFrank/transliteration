@@ -4,13 +4,15 @@ declare(strict_types=1);
 namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
 
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
+use PrinsFrank\Standards\LanguageTag\SubtagSeparator;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
 use PrinsFrank\Standards\Scripts\ScriptName;
+use Stringable;
 
 /**
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#basic-ids
  */
-class BasicID
+final class BasicID implements Stringable
 {
     public function __construct(
         public readonly ScriptName|ScriptAlias|LanguageTag|SpecialTag|null $source = null,
@@ -23,10 +25,10 @@ class BasicID
     {
         $string = '';
         if ($this->source !== null) {
-            $string .= ($this->source instanceof LanguageTag ? $this->source->__toString() : $this->source->value) . '-';
+            $string .= ($this->source instanceof LanguageTag ? $this->source->toString(SubtagSeparator::UNDERSCORE) : $this->source->value) . '-';
         }
 
-        $string .= $this->target instanceof LanguageTag ? $this->target->__toString() : $this->target->value;
+        $string .= $this->target instanceof LanguageTag ? $this->target->toString(SubtagSeparator::UNDERSCORE) : $this->target->value;
         if ($this->variant !== null) {
             $string .= '/' . $this->variant->value;
         }
