@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
+namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components;
 
 enum Variant: string
 {

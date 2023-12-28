@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
 
-class Filter
-{
+use Stringable;
 
-}
+interface ID extends Stringable { }
