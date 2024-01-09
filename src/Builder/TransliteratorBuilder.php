@@ -13,16 +13,16 @@ use Transliterator;
 
 class TransliteratorBuilder
 {
-    private TransliterationDirection $direction = TransliterationDirection::FORWARD;
-
     /** @var list<SingleID> */
     private array $singleIDS = [];
 
-    private Filter|null $globalFilter = null;
-
     private readonly TypedTransliteratorInterface $typedTransliterator;
 
-    public function __construct(TypedTransliteratorInterface|null $typedTransliterator) {
+    public function __construct(
+        TypedTransliteratorInterface|null $typedTransliterator = null,
+        private TransliterationDirection $direction = TransliterationDirection::FORWARD,
+        private Filter|null $globalFilter = null,
+    ) {
         $this->typedTransliterator = $typedTransliterator ?? new TypedTransliterator();
     }
 
