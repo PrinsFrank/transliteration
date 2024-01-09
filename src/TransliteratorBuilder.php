@@ -4,19 +4,19 @@ declare(strict_types=1);
 namespace PrinsFrank\TransliteratorWrapper;
 
 use PrinsFrank\TransliteratorWrapper\Enum\TransliterationDirection;
-use PrinsFrank\TransliteratorWrapper\Exception\InvalidArgumentException;
 use PrinsFrank\TransliteratorWrapper\Exception\ListIDsUnavailableException;
+use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
+use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
 use Transliterator;
 
-class TypedTransliterator
+class TransliteratorBuilder implements TransliteratorBuilderInterface
 {
-    /** @throws InvalidArgumentException */
-    public static function create(
-        TransformationCollection $transformationCollection,
+    public function create(
+        BasicID|CompoundID       $id,
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): Transliterator {
         return Transliterator::create(
-            $transformationCollection->getIdentifierString(),
+            $id->__toString(),
             match ($direction) {
                 TransliterationDirection::FORWARD => Transliterator::FORWARD,
                 TransliterationDirection::REVERSE => Transliterator::REVERSE,
@@ -25,7 +25,7 @@ class TypedTransliterator
     }
 
     /** @throws ListIDsUnavailableException */
-    public static function listIDs(): array
+    public function listIDs(): array
     {
         $ids = Transliterator::listIDs();
         if ($ids === false) {
