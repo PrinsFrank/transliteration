@@ -8,7 +8,7 @@ use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
 use Transliterator;
 
-interface TransliteratorBuilderInterface
+interface TypedTransliteratorInterface
 {
     public function create(BasicID|CompoundID $id, TransliterationDirection $direction = TransliterationDirection::FORWARD): Transliterator;
 

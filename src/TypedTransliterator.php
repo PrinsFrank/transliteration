@@ -9,7 +9,7 @@ use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
 use Transliterator;
 
-class TransliteratorBuilder implements TransliteratorBuilderInterface
+class TypedTransliterator implements TypedTransliteratorInterface
 {
     public function create(
         BasicID|CompoundID       $id,
