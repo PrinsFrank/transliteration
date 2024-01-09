@@ -16,8 +16,8 @@ use Stringable;
 final class BasicID implements Stringable
 {
     public function __construct(
-        public readonly ScriptName|ScriptAlias|LanguageTag|SpecialTag|null $source = null,
         public readonly ScriptName|ScriptAlias|LanguageTag|SpecialTag $target,
+        public readonly ScriptName|ScriptAlias|LanguageTag|SpecialTag|null $source = null,
         public readonly Variant|null $variant = null,
     ) {
     }
