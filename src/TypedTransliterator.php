@@ -24,12 +24,6 @@ class TypedTransliterator
         );
     }
 
-    /** @throws InvalidArgumentException */
-    public static function createInverse(TransformationCollection $transformationCollection): Transliterator
-    {
-        return static::create($transformationCollection, TransliterationDirection::REVERSE);
-    }
-
     /** @throws ListIDsUnavailableException */
     public static function listIDs(): array
     {
