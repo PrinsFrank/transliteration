@@ -7,12 +7,13 @@ use PrinsFrank\TransliteratorWrapper\Enum\TransliterationDirection;
 use PrinsFrank\TransliteratorWrapper\Exception\ListIDsUnavailableException;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
+use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\SingleID;
 use Transliterator;
 
 class TypedTransliterator implements TypedTransliteratorInterface
 {
     public function create(
-        BasicID|CompoundID       $id,
+        SingleID|CompoundID       $id,
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): Transliterator {
         return Transliterator::create(
@@ -26,7 +27,7 @@ class TypedTransliterator implements TypedTransliteratorInterface
 
     public function transliterate(
         string $string,
-        BasicID|CompoundID       $id,
+        SingleID|CompoundID       $id,
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): string {
         return transliterator_transliterate($this->create($id, $direction), $string);

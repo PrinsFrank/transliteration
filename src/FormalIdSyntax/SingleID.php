@@ -13,15 +13,15 @@ final class SingleID implements ID
 {
     /** @throws InvalidArgumentException */
     public function __construct(
-        public readonly BasicID $basicID,
-        public readonly Filter|null $globalFilter = null,
+        public readonly BasicID     $basicID,
+        public readonly Filter|null $filter = null,
     ) { }
 
     public function __toString(): string
     {
         $string = '';
-        if ($this->globalFilter !== null) {
-            $string .= $this->globalFilter->__toString() . Literal::Semicolon->value;
+        if ($this->filter !== null) {
+            $string .= $this->filter->__toString() . Literal::Semicolon->value;
         }
 
         return $string . $this->basicID->__toString();
