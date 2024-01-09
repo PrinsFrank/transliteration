@@ -12,5 +12,7 @@ interface TypedTransliteratorInterface
 {
     public function create(BasicID|CompoundID $id, TransliterationDirection $direction = TransliterationDirection::FORWARD): Transliterator;
 
+    public function transliterate(string $string, BasicID|CompoundID $id, TransliterationDirection $direction = TransliterationDirection::FORWARD): string;
+
     public function listIDs(): array;
 }

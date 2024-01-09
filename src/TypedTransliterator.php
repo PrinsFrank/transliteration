@@ -24,6 +24,14 @@ class TypedTransliterator implements TypedTransliteratorInterface
         );
     }
 
+    public function transliterate(
+        string $string,
+        BasicID|CompoundID       $id,
+        TransliterationDirection $direction = TransliterationDirection::FORWARD
+    ): string {
+        return transliterator_transliterate($this->create($id, $direction), $string);
+    }
+
     /** @throws ListIDsUnavailableException */
     public function listIDs(): array
     {
