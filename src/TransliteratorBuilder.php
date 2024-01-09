@@ -1,14 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\Builder;
+namespace PrinsFrank\TransliteratorWrapper;
 
 use PrinsFrank\TransliteratorWrapper\Enum\TransliterationDirection;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Components\Filter;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\SingleID;
-use PrinsFrank\TransliteratorWrapper\TypedTransliterator;
-use PrinsFrank\TransliteratorWrapper\TypedTransliteratorInterface;
 use Transliterator;
 
 class TransliteratorBuilder
