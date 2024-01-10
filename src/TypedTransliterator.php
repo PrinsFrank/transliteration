@@ -34,7 +34,12 @@ class TypedTransliterator implements TypedTransliteratorInterface
         SingleID|CompoundID       $id,
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): string {
-        return transliterator_transliterate($this->create($id, $direction), $string);
+        $transliteratedString = transliterator_transliterate($this->create($id, $direction), $string);
+        if ($transliteratedString === false) {
+            throw new UnableToCreateTransliteratorException(intl_get_error_message());
+        }
+
+        return $transliteratedString;
     }
 
     /** @throws ListIDsUnavailableException */

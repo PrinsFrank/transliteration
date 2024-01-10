@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
 
-use PrinsFrank\TransliteratorWrapper\Exception\InvalidArgumentException;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Filter;
 
