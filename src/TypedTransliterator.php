@@ -5,25 +5,30 @@ namespace PrinsFrank\TransliteratorWrapper;
 
 use PrinsFrank\TransliteratorWrapper\Enum\TransliterationDirection;
 use PrinsFrank\TransliteratorWrapper\Exception\ListIDsUnavailableException;
+use PrinsFrank\TransliteratorWrapper\Exception\UnableToCreateTransliteratorException;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\SingleID;
 use Transliterator;
 
 class TypedTransliterator implements TypedTransliteratorInterface
 {
+    /** @throws UnableToCreateTransliteratorException */
     public function create(
         SingleID|CompoundID       $id,
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): Transliterator {
-        return Transliterator::create(
+        $transliterator = Transliterator::create(
             $id->__toString(),
             match ($direction) {
                 TransliterationDirection::FORWARD => Transliterator::FORWARD,
                 TransliterationDirection::REVERSE => Transliterator::REVERSE,
             }
         );
+
+        return $transliterator ?? throw new UnableToCreateTransliteratorException(intl_get_error_message());
     }
 
+    /** @throws UnableToCreateTransliteratorException */
     public function transliterate(
         string $string,
         SingleID|CompoundID       $id,
