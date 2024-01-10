@@ -24,7 +24,7 @@ class BasicIdTest extends TestCase
     public function testToString(): void
     {
         static::assertSame('Katakana-Latin', (new BasicID(ScriptName::Latin, ScriptName::Katakana))->__toString());
-        static::assertSame('Null', (new BasicID( SpecialTag::Null))->__toString());
+        static::assertSame('Null', (new BasicID(SpecialTag::Null))->__toString());
         static::assertSame('Hex-Any/Perl', (new BasicID(SpecialTag::Any, SpecialTag::Hex, Variant::Perl))->__toString());
         static::assertSame('Latin-el', (new BasicID(new LanguageTag(LanguageAlpha2::Greek_Modern_1453), ScriptName::Latin))->__toString());
         static::assertSame('Greek-en_US/UNGEGN', (new BasicID(new LanguageTag(LanguageAlpha2::English, regionSubtag: CountryAlpha2::United_States_of_America), ScriptName::Greek, Variant::UNGEGN))->__toString());
