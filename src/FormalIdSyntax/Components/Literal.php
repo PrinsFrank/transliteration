@@ -11,5 +11,5 @@ enum Literal: string
     case Slash                = '/';
     case Square_Bracket_Open  = '[';
     case Square_Bracket_Close = ']';
-    case Carret               = '^';
+    case Caret                = '^';
 }

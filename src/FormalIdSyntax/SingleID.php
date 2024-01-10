@@ -6,7 +6,6 @@ namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
 use PrinsFrank\TransliteratorWrapper\Exception\InvalidArgumentException;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Filter;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Literal;
 
 /** @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax */
 final class SingleID implements ID

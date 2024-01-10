@@ -9,7 +9,6 @@ use Stringable;
 /**
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax
  * "Finally, ‘filter’ is a valid UnicodeSet pattern."
- *
  * @see https://unicode-org.github.io/icu/userguide/strings/unicodeset.html
  */
 final class Filter implements Stringable
@@ -23,7 +22,7 @@ final class Filter implements Stringable
     {
         $string = Literal::Square_Bracket_Open->value;
         if ($this->inverse === true) {
-            $string .= Literal::Carret->value;
+            $string .= Literal::Caret->value;
         }
 
         foreach ($this->set as $set) {
