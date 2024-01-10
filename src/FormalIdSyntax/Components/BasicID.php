@@ -7,7 +7,6 @@ use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\LanguageTag\SubtagSeparator;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
 use PrinsFrank\Standards\Scripts\ScriptName;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Components\Literal;
 use Stringable;
 
 /**
