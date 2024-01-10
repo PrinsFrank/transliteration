@@ -55,7 +55,7 @@ final class Filter implements Stringable
             throw new InvalidArgumentException('Only single multibyte characters are allowed');
         }
 
-        if ($char = ' ') {
+        if ($char === ' ') {
             $char = '\u0020';
         }
 
