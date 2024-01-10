@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace FormalIdSyntax;
+namespace PrinsFrank\TransliteratorWrapper\Tests\Unit\FormalIDSyntax\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Country\CountryAlpha2;
