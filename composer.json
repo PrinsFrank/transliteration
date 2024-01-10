@@ -28,6 +28,7 @@
         "cs": "php-cs-fixer fix --allow-risky=yes --dry-run",
         "cs:fix": "php-cs-fixer fix --allow-risky=yes",
         "stan": "phpstan analyse",
-        "unit": "phpunit --testsuite=Unit"
+        "unit": "phpunit --testsuite=Unit",
+        "feature": "phpunit --testsuite=Feature"
     }
 }
