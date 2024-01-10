@@ -22,7 +22,7 @@ final class SingleID implements ID
     {
         $string = '';
         if ($this->filter !== null) {
-            $string .= $this->filter->__toString() . Literal::Semicolon->value;
+            $string .= $this->filter->__toString();
         }
 
         return $string . $this->basicID->__toString();
