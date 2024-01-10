@@ -8,11 +8,11 @@ use PrinsFrank\Standards\Country\CountryAlpha2;
 use PrinsFrank\Standards\Language\LanguageAlpha2;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptName;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\BasicID;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\SpecialTag;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Variant;
+use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
+use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\SpecialTag;
+use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Variant;
 
-/** @coversDefaultClass \PrinsFrank\TransliteratorWrapper\FormalIdSyntax\BasicID */
+/** @coversDefaultClass \PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID */
 class BasicIdTest extends TestCase
 {
     /**
@@ -23,13 +23,13 @@ class BasicIdTest extends TestCase
      */
     public function testToString(): void
     {
-        static::assertSame('Katakana-Latin', (new BasicID(ScriptName::Katakana, ScriptName::Latin))->__toString());
-        static::assertSame('Null', (new BasicID(null, SpecialTag::Null))->__toString());
-        static::assertSame('Hex-Any/Perl', (new BasicID(SpecialTag::Hex, SpecialTag::Any, Variant::Perl))->__toString());
-        static::assertSame('Latin-el', (new BasicID(ScriptName::Latin, new LanguageTag(LanguageAlpha2::Greek_Modern_1453)))->__toString());
-        static::assertSame('Greek-en_US/UNGEGN', (new BasicID(ScriptName::Greek, new LanguageTag(LanguageAlpha2::English, regionSubtag: CountryAlpha2::United_States_of_America), Variant::UNGEGN))->__toString());
-        static::assertSame('Any-Hex/Unicode', (new BasicID(SpecialTag::Any, SpecialTag::Hex, Variant::Unicode))->__toString());
-        static::assertSame('Any-Hex/Perl', (new BasicID(SpecialTag::Any, SpecialTag::Hex, Variant::Perl))->__toString());
-        static::assertSame('Any-Hex/XML', (new BasicID(SpecialTag::Any, SpecialTag::Hex, Variant::XML))->__toString());
+        static::assertSame('Katakana-Latin', (new BasicID(ScriptName::Latin, ScriptName::Katakana))->__toString());
+        static::assertSame('Null', (new BasicID( SpecialTag::Null))->__toString());
+        static::assertSame('Hex-Any/Perl', (new BasicID(SpecialTag::Any, SpecialTag::Hex, Variant::Perl))->__toString());
+        static::assertSame('Latin-el', (new BasicID(new LanguageTag(LanguageAlpha2::Greek_Modern_1453), ScriptName::Latin))->__toString());
+        static::assertSame('Greek-en_US/UNGEGN', (new BasicID(new LanguageTag(LanguageAlpha2::English, regionSubtag: CountryAlpha2::United_States_of_America), ScriptName::Greek, Variant::UNGEGN))->__toString());
+        static::assertSame('Any-Hex/Unicode', (new BasicID(SpecialTag::Hex, SpecialTag::Any, Variant::Unicode))->__toString());
+        static::assertSame('Any-Hex/Perl', (new BasicID(SpecialTag::Hex, SpecialTag::Any, Variant::Perl))->__toString());
+        static::assertSame('Any-Hex/XML', (new BasicID(SpecialTag::Hex, SpecialTag::Any, Variant::XML))->__toString());
     }
 }
