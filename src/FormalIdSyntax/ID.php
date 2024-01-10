@@ -5,4 +5,6 @@ namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
 
 use Stringable;
 
-interface ID extends Stringable { }
+interface ID extends Stringable
+{
+}

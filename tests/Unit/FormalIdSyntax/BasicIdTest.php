@@ -16,10 +16,10 @@ use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Variant;
 class BasicIdTest extends TestCase
 {
     /**
+     * @source examples from https://unicode-org.github.io/icu/userguide/transforms/general/#basic-ids
+     *
      * @covers ::__construct
      * @covers ::__toString
-     *
-     * @source examples from https://unicode-org.github.io/icu/userguide/transforms/general/#basic-ids
      */
     public function testToString(): void
     {

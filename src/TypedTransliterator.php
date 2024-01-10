@@ -5,7 +5,6 @@ namespace PrinsFrank\TransliteratorWrapper;
 
 use PrinsFrank\TransliteratorWrapper\Enum\TransliterationDirection;
 use PrinsFrank\TransliteratorWrapper\Exception\ListIDsUnavailableException;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\SingleID;
 use Transliterator;

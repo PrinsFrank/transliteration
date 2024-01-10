@@ -11,8 +11,8 @@ use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Components\Litera
 final class CompoundID implements ID
 {
     /**
-     * @throws InvalidArgumentException
      * @param list<SingleID> $singleIds
+     * @throws InvalidArgumentException
      */
     public function __construct(
         public readonly array       $singleIds,

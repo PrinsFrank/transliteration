@@ -5,5 +5,4 @@ namespace PrinsFrank\TransliteratorWrapper\Exception;
 
 class ListIDsUnavailableException extends TransliteratorWrapperException
 {
-
 }

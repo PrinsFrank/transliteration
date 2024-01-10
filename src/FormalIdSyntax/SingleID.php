@@ -15,7 +15,8 @@ final class SingleID implements ID
     public function __construct(
         public readonly BasicID     $basicID,
         public readonly Filter|null $filter = null,
-    ) { }
+    ) {
+    }
 
     public function __toString(): string
     {

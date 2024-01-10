@@ -5,7 +5,7 @@ namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components;
 
 enum SpecialTag: string
 {
-    case Any = 'Any';
-    case Hex = 'Hex';
+    case Any  = 'Any';
+    case Hex  = 'Hex';
     case Null = 'Null';
 }
