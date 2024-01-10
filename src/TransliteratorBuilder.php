@@ -83,6 +83,16 @@ class TransliteratorBuilder
         return $this->convertScriptLanguage(SpecialTag::IPA, SpecialTag::XSampa);
     }
 
+    public function remove(Filter $filter): static
+    {
+        return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter));
+    }
+
+    public function keep(Filter $filter): static
+    {
+        return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter->inverse()));
+    }
+
     public function getTransliterator(): Transliterator
     {
         if ($this->globalFilter === null && count($this->singleIDS) === 1) {
