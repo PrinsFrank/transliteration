@@ -12,7 +12,6 @@ final class CompoundID implements ID
 {
     /**
      * @param list<SingleID> $singleIds
-     * @throws InvalidArgumentException
      */
     public function __construct(
         public readonly array       $singleIds,
