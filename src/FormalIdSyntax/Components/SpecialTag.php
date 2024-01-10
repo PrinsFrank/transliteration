@@ -8,4 +8,7 @@ enum SpecialTag: string
     case Any  = 'Any';
     case Hex  = 'Hex';
     case Null = 'Null';
+    case ASCII = 'ASCII';
+    case IPA = 'IPA';
+    case XSampa = 'XSampa';
 }
