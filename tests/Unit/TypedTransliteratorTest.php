@@ -12,6 +12,7 @@ class TypedTransliteratorTest extends TestCase
 {
     /**
      * @covers ::listIDs
+     *
      * @throws ListIDsUnavailableException
      */
     public function testListIDs(): void
