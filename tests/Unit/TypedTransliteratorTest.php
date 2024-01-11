@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\Tests\Unit;
+namespace PrinsFrank\Transliteration\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PrinsFrank\TransliteratorWrapper\Exception\ListIDsUnavailableException;
-use PrinsFrank\TransliteratorWrapper\TypedTransliterator;
+use PrinsFrank\Transliteration\Exception\ListIDsUnavailableException;
+use PrinsFrank\Transliteration\TypedTransliterator;
 
-/** @coversDefaultClass \PrinsFrank\TransliteratorWrapper\TypedTransliterator */
+/** @coversDefaultClass \PrinsFrank\Transliteration\TypedTransliterator */
 class TypedTransliteratorTest extends TestCase
 {
     /**

@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\Exception;
+namespace PrinsFrank\Transliteration\Exception;
 
-class UnableToCreateTransliteratorException extends TransliteratorWrapperException
+class UnableToCreateTransliteratorException extends TransliterationException
 {
 }

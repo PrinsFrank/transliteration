@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper;
+namespace PrinsFrank\Transliteration;
 
-use PrinsFrank\TransliteratorWrapper\Enum\TransliterationDirection;
-use PrinsFrank\TransliteratorWrapper\Exception\ListIDsUnavailableException;
-use PrinsFrank\TransliteratorWrapper\Exception\UnableToCreateTransliteratorException;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\SingleID;
+use PrinsFrank\Transliteration\Enum\TransliterationDirection;
+use PrinsFrank\Transliteration\Exception\ListIDsUnavailableException;
+use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
+use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
+use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use Transliterator;
 
 class TypedTransliterator implements TypedTransliteratorInterface

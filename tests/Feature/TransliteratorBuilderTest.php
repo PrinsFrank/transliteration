@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\Tests\Feature;
+namespace PrinsFrank\Transliteration\Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\InvalidArgumentException;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Filter;
-use PrinsFrank\TransliteratorWrapper\TransliteratorBuilder;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\TransliteratorBuilder;
 
 /** @coversNothing */
 class TransliteratorBuilderTest extends TestCase

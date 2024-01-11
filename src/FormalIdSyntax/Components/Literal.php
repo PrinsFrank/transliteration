@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components;
+namespace PrinsFrank\Transliteration\FormalIdSyntax\Components;
 
 /** @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax */
 enum Literal: string

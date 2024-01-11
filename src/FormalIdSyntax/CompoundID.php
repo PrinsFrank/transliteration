@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
+namespace PrinsFrank\Transliteration\FormalIdSyntax;
 
-use PrinsFrank\TransliteratorWrapper\Exception\InvalidArgumentException;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Filter;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Literal;
+use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Literal;
 
 /** @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax */
 final class CompoundID implements ID

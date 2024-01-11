@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper;
+namespace PrinsFrank\Transliteration;
 
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
 use PrinsFrank\Standards\Scripts\ScriptName;
-use PrinsFrank\TransliteratorWrapper\Enum\TransliterationDirection;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Filter;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\SpecialTag;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Variant;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\CompoundID;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\SingleID;
+use PrinsFrank\Transliteration\Enum\TransliterationDirection;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\SpecialTag;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Variant;
+use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
+use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use Transliterator;
 
 class TransliteratorBuilder

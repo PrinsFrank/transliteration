@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Exception;
 
-class ListIDsUnavailableException extends TransliterationException
+use Exception;
+
+abstract class TransliterationException extends Exception
 {
 }

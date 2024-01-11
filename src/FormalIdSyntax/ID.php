@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\FormalIdSyntax;
+namespace PrinsFrank\Transliteration\FormalIdSyntax;
 
 use Stringable;
 

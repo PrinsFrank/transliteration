@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\Tests\Unit\FormalIdSyntax\Components;
+namespace PrinsFrank\Transliteration\Tests\Unit\FormalIdSyntax\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Country\CountryAlpha2;
@@ -9,11 +9,11 @@ use PrinsFrank\Standards\InvalidArgumentException;
 use PrinsFrank\Standards\Language\LanguageAlpha2;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptName;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\SpecialTag;
-use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Variant;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\SpecialTag;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Variant;
 
-/** @coversDefaultClass \PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID */
+/** @coversDefaultClass \PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID */
 class BasicIdTest extends TestCase
 {
     /**

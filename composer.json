@@ -5,12 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "PrinsFrank\\TransliteratorWrapper\\": "src/"
+            "PrinsFrank\\Transliteration\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PrinsFrank\\TransliteratorWrapper\\Tests\\": "tests/"
+            "PrinsFrank\\Transliteration\\Tests\\": "tests/"
         }
     },
     "require": {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\TransliteratorWrapper\Enum;
+namespace PrinsFrank\Transliteration\Enum;
 
 enum TransliterationDirection
 {
