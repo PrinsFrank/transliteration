@@ -5,4 +5,4 @@ extend-exclude = [
 ignore-hidden = false
 
 [default.extend-identifiers]
-"Naxi Geba (na²¹ɕi³³ ge²¹ba²¹, \'Na \'Khi ²Ggŏ ¹baw, Nakhi Geba)" = "Naxi Geba (na²¹ɕi³³ ge²¹ba²¹, \'Na \'Khi ²Ggŏ ¹baw, Nakhi Geba)"
+"Naxi Geba (na²¹ɕi³³ ge²¹ba²¹, 'Na 'Khi ²Ggŏ ¹baw, Nakhi Geba)" = "Naxi Geba (na²¹ɕi³³ ge²¹ba²¹, 'Na 'Khi ²Ggŏ ¹baw, Nakhi Geba)"
