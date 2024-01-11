@@ -42,7 +42,10 @@ class TypedTransliterator implements TypedTransliteratorInterface
         return $transliteratedString;
     }
 
-    /** @throws ListIDsUnavailableException */
+    /**
+     * @throws ListIDsUnavailableException
+     * @return list<string>
+     */
     public function listIDs(): array
     {
         $ids = Transliterator::listIDs();

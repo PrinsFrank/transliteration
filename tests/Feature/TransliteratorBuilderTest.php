@@ -4,13 +4,17 @@ declare(strict_types=1);
 namespace PrinsFrank\TransliteratorWrapper\Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
+use PrinsFrank\Standards\InvalidArgumentException;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Filter;
 use PrinsFrank\TransliteratorWrapper\TransliteratorBuilder;
 
 /** @coversNothing */
 class TransliteratorBuilderTest extends TestCase
 {
-    /** Examples from prinsfrank/standards */
+    /**
+     * Examples from prinsfrank/standards
+     * @throws InvalidArgumentException
+     */
     public function testTransliteratorBuilderWithScriptNamesInNativeLanguages(): void
     {
         $transliterator = (new TransliteratorBuilder())

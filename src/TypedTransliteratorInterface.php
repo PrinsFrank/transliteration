@@ -14,5 +14,6 @@ interface TypedTransliteratorInterface
 
     public function transliterate(string $string, SingleID|CompoundID $id, TransliterationDirection $direction = TransliterationDirection::FORWARD): string;
 
+    /** @return list<string> */
     public function listIDs(): array;
 }

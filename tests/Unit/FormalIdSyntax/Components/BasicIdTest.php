@@ -8,6 +8,7 @@ use PrinsFrank\Standards\Country\CountryAlpha2;
 use PrinsFrank\Standards\Language\LanguageAlpha2;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptName;
+use PrinsFrank\TransliteratorWrapper\Exception\InvalidArgumentException;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\SpecialTag;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Variant;
@@ -20,6 +21,8 @@ class BasicIdTest extends TestCase
      *
      * @covers ::__construct
      * @covers ::__toString
+     *
+     * @throws InvalidArgumentException
      */
     public function testToString(): void
     {
