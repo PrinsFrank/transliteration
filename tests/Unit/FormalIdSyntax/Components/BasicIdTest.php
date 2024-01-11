@@ -5,10 +5,10 @@ namespace PrinsFrank\TransliteratorWrapper\Tests\Unit\FormalIdSyntax\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Country\CountryAlpha2;
+use PrinsFrank\Standards\InvalidArgumentException;
 use PrinsFrank\Standards\Language\LanguageAlpha2;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptName;
-use PrinsFrank\TransliteratorWrapper\Exception\InvalidArgumentException;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\SpecialTag;
 use PrinsFrank\TransliteratorWrapper\FormalIdSyntax\Components\Variant;
