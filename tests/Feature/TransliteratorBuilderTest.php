@@ -13,6 +13,7 @@ class TransliteratorBuilderTest extends TestCase
 {
     /**
      * Examples from prinsfrank/standards
+     *
      * @throws InvalidArgumentException
      */
     public function testTransliteratorBuilderWithScriptNamesInNativeLanguages(): void
