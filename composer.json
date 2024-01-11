@@ -1,5 +1,5 @@
 {
-    "name": "prinsfrank/transliterator-wrapper",
+    "name": "prinsfrank/transliteration",
     "description": "A typed wrapper for the native PHP transliterator offering typed and documented arguments instead of an arbitrary string",
     "type": "library",
     "license": "MIT",
