@@ -19,7 +19,8 @@ final class Conversion implements Stringable
         public readonly string|null $afterContext = null,
         public readonly string|null $resultToRevisit = null,
         public readonly TransliterationDirection $conversionDirection = TransliterationDirection::FORWARD,
-    ) { }
+    ) {
+    }
 
     public function __toString(): string
     {

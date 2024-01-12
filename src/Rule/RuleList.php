@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Rule;
 
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Literal;
-use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
@@ -22,7 +20,8 @@ final class RuleList implements Stringable
         public readonly Filter|null $globalFilter = null,
         public readonly array $rules,
         public readonly Filter|null $inverseFilter = null,
-    ) { }
+    ) {
+    }
 
     public function __toString(): string
     {

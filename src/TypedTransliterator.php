@@ -25,7 +25,7 @@ class TypedTransliterator implements TypedTransliteratorInterface
 
         $transliterator = match (get_class($id)) {
             RuleList::class => Transliterator::createFromRules($id->__toString(), $transliteratorDirection),
-            default => Transliterator::create($id->__toString(), $transliteratorDirection)
+            default         => Transliterator::create($id->__toString(), $transliteratorDirection)
         };
 
         return $transliterator ?? throw new UnableToCreateTransliteratorException(intl_get_error_message(), $id->__toString());
