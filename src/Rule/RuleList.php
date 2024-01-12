@@ -7,6 +7,7 @@ use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Literal;
 use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
+use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
 use Stringable;
@@ -16,7 +17,7 @@ use Stringable;
  */
 final class RuleList implements Stringable
 {
-    /** @param list<BasicID|Conversion|VariableDefinition> $rules */
+    /** @param list<SingleID|Conversion|VariableDefinition> $rules */
     public function __construct(
         public readonly Filter|null $globalFilter = null,
         public readonly array $rules,
@@ -27,19 +28,19 @@ final class RuleList implements Stringable
     {
         $string = '';
         if ($this->globalFilter !== null) {
-            $string .= $this->globalFilter->__toString() . PHP_EOL;
+            $string .= $this->globalFilter->__toString() . Literal::Semicolon->value . PHP_EOL;
         }
 
         foreach ($this->rules as $rule) {
-            if ($rule instanceof BasicID || $rule instanceof CompoundID || $rule instanceof Filter) {
+            if ($rule instanceof SingleID) {
                 $string .= Literal::Colon->value . Literal::Colon->value;
             }
 
-            $string .= $rule->__toString() . PHP_EOL;
+            $string .= $rule->__toString() . Literal::Semicolon->value . PHP_EOL;
         }
 
         if ($this->inverseFilter !== null) {
-            $string .= $this->inverseFilter->__toString() . PHP_EOL;
+            $string .= $this->inverseFilter->__toString() . Literal::Semicolon->value . PHP_EOL;
         }
 
         return $string;

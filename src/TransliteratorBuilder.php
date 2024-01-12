@@ -15,6 +15,7 @@ use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
+use PrinsFrank\Transliteration\Rule\RuleList;
 use Transliterator;
 
 class TransliteratorBuilder
@@ -49,6 +50,20 @@ class TransliteratorBuilder
     public function addSingleID(SingleID $singleID): static
     {
         $this->conversions[] = $singleID;
+
+        return $this;
+    }
+
+    public function addConversion(Conversion $conversion): static
+    {
+        $this->conversions[] = $conversion;
+
+        return $this;
+    }
+
+    public function addVariableDefinition(VariableDefinition $variableDefinition): static
+    {
+        $this->conversions[] = $variableDefinition;
 
         return $this;
     }
@@ -95,10 +110,19 @@ class TransliteratorBuilder
         return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter->inverse()));
     }
 
+    public function replace(string $string, string $with): static
+    {
+        return $this->addConversion(new Conversion($string, $with));
+    }
+
     public function getTransliterator(): Transliterator
     {
+        if ($this->containsRuleComponent() === true) {
+            return $this->typedTransliterator->create(new RuleList($this->globalFilter, $this->conversions), $this->direction);
+        }
+
         if ($this->globalFilter === null && count($this->conversions) === 1) {
-            $this->typedTransliterator->create($this->conversions[0], $this->direction);
+            return $this->typedTransliterator->create($this->conversions[0], $this->direction);
         }
 
         return $this->typedTransliterator->create(new CompoundID($this->conversions, $this->globalFilter), $this->direction);
@@ -106,10 +130,25 @@ class TransliteratorBuilder
 
     public function transliterate(string $string): string
     {
+        if ($this->containsRuleComponent() === true) {
+            return $this->typedTransliterator->transliterate($string, new RuleList($this->globalFilter, $this->conversions), $this->direction);
+        }
+
         if ($this->globalFilter === null && count($this->conversions) === 1) {
-            $this->typedTransliterator->transliterate($string, $this->conversions[0], $this->direction);
+            return $this->typedTransliterator->transliterate($string, $this->conversions[0], $this->direction);
         }
 
         return $this->typedTransliterator->transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
+    }
+
+    public function containsRuleComponent(): bool
+    {
+        foreach ($this->conversions as $conversion) {
+            if ($conversion instanceof Conversion || $conversion instanceof VariableDefinition) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
