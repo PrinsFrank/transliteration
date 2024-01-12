@@ -100,6 +100,11 @@ class TransliteratorBuilder
         return $this->convertScriptLanguage(SpecialTag::IPA, SpecialTag::XSampa);
     }
 
+    public function toIPA(): static
+    {
+        return $this->convertScriptLanguage(SpecialTag::XSampa, SpecialTag::IPA);
+    }
+
     public function remove(Filter $filter): static
     {
         return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter));

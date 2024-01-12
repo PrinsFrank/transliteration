@@ -20,7 +20,6 @@ class TransliteratorBuilderTest extends TestCase
     {
         $transliterator = (new TransliteratorBuilder())
             ->toASCII()
-            ->toXSampa()
             ->keep((new Filter())->addRange('a', 'z')->addRange('A', 'Z')->addChar(' '))
         ;
 
@@ -43,9 +42,8 @@ class TransliteratorBuilderTest extends TestCase
     {
         $transliterator = (new TransliteratorBuilder())
             ->toASCII()
-            ->replace('ʌ', 'e')
-            ->toXSampa()
             ->replace('\u002D', '\u0020')
+            ->replace('ʌ', 'e')
             ->replace('Ɔ', 'O')
             ->keep((new Filter())->addRange('a', 'z')->addRange('A', 'Z')->addChar(' '))
         ;
