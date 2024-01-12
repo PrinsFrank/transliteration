@@ -13,12 +13,14 @@ use PrinsFrank\Transliteration\FormalIdSyntax\Components\SpecialTag;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Variant;
 use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
+use PrinsFrank\Transliteration\Rule\Components\Conversion;
+use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
 use Transliterator;
 
 class TransliteratorBuilder
 {
-    /** @var list<SingleID> */
-    private array $singleIDS = [];
+    /** @var list<SingleID|Conversion|VariableDefinition> */
+    private array $conversions = [];
 
     private readonly TypedTransliteratorInterface $typedTransliterator;
 
@@ -46,7 +48,7 @@ class TransliteratorBuilder
 
     public function addSingleID(SingleID $singleID): static
     {
-        $this->singleIDS[] = $singleID;
+        $this->conversions[] = $singleID;
 
         return $this;
     }
@@ -95,19 +97,19 @@ class TransliteratorBuilder
 
     public function getTransliterator(): Transliterator
     {
-        if ($this->globalFilter === null && count($this->singleIDS) === 1) {
-            $this->typedTransliterator->create($this->singleIDS[0], $this->direction);
+        if ($this->globalFilter === null && count($this->conversions) === 1) {
+            $this->typedTransliterator->create($this->conversions[0], $this->direction);
         }
 
-        return $this->typedTransliterator->create(new CompoundID($this->singleIDS, $this->globalFilter), $this->direction);
+        return $this->typedTransliterator->create(new CompoundID($this->conversions, $this->globalFilter), $this->direction);
     }
 
     public function transliterate(string $string): string
     {
-        if ($this->globalFilter === null && count($this->singleIDS) === 1) {
-            $this->typedTransliterator->transliterate($string, $this->singleIDS[0], $this->direction);
+        if ($this->globalFilter === null && count($this->conversions) === 1) {
+            $this->typedTransliterator->transliterate($string, $this->conversions[0], $this->direction);
         }
 
-        return $this->typedTransliterator->transliterate($string, new CompoundID($this->singleIDS, $this->globalFilter), $this->direction);
+        return $this->typedTransliterator->transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
     }
 }
