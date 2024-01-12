@@ -24,4 +24,3 @@ To start right away, run the following command in your composer project;
 Or for development only;
 
 ```composer require prinsfrank/transliterator-wrapper --dev```
-** This package is not production ready **
