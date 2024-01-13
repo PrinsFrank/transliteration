@@ -40,7 +40,7 @@ final class Conversion implements Stringable
     protected function withSeparatorBefore(string $text, string|null $separator): string
     {
         if ($separator === null) {
-            return '';
+            return $text;
         }
         
         return $separator . $text;
@@ -49,7 +49,7 @@ final class Conversion implements Stringable
     protected function withSeparatorAfter(string $text, string|null $separator): string
     {
         if ($separator === null) {
-            return '';
+            return $text;
         }
         
         return $text . $separator;
