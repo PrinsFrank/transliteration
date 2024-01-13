@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Rule\Components;
 
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Literal;
+use PrinsFrank\Transliteration\Enum\Literal;
 use Stringable;
 
 final class VariableDefinition implements Stringable

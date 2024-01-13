@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Rule;
 
+use PrinsFrank\Transliteration\Enum\Literal;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Literal;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;

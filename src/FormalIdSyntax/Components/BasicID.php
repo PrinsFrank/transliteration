@@ -7,6 +7,9 @@ use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\LanguageTag\SubtagSeparator;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
 use PrinsFrank\Standards\Scripts\ScriptName;
+use PrinsFrank\Transliteration\Enum\Literal;
+use PrinsFrank\Transliteration\Enum\SpecialTag;
+use PrinsFrank\Transliteration\Enum\Variant;
 use Stringable;
 
 /**

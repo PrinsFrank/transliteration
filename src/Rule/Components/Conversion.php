@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Rule\Components;
 
+use PrinsFrank\Transliteration\Enum\Literal;
 use PrinsFrank\Transliteration\Enum\TransliterationDirection;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Literal;
 use Stringable;
 
 /**
