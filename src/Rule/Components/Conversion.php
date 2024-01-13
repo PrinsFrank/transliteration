@@ -37,19 +37,19 @@ final class Conversion implements Stringable
         };
     }
 
-    protected function withSeparatorBefore(string $text, string|null $separator): string
+    protected function withSeparatorBefore(string|null $text, string $separator): string
     {
-        if ($separator === null) {
-            return $text;
+        if ($text === null) {
+            return '';
         }
         
         return $separator . $text;
     }
 
-    protected function withSeparatorAfter(string $text, string|null $separator): string
+    protected function withSeparatorAfter(string|null $text, string $separator): string
     {
-        if ($separator === null) {
-            return $text;
+        if ($text === null) {
+            return '';
         }
         
         return $text . $separator;
