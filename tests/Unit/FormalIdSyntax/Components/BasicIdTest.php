@@ -9,9 +9,9 @@ use PrinsFrank\Standards\InvalidArgumentException;
 use PrinsFrank\Standards\Language\LanguageAlpha2;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptName;
+use PrinsFrank\Transliteration\Enum\SpecialTag;
+use PrinsFrank\Transliteration\Enum\Variant;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\SpecialTag;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Variant;
 
 /** @coversDefaultClass \PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID */
 class BasicIdTest extends TestCase
