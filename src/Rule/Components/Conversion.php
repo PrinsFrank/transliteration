@@ -25,8 +25,33 @@ final class Conversion implements Stringable
     public function __toString(): string
     {
         return match ($this->conversionDirection) {
-            TransliterationDirection::FORWARD => $this->beforeContext . ($this->beforeContext !== null ? Literal::Left_Curly_Bracket->value : '') . $this->textToReplace . ($this->afterContext !== null ? Literal::Right_Curly_Bracket->value : '') . $this->afterContext . Literal::Greater_Than_Sign->value . $this->completedResult . ($this->resultToRevisit !== null ? Literal::Vertical_Line->value : '') . $this->resultToRevisit,
+            TransliterationDirection::FORWARD => sprintf(
+                '%s%s%s%s%s',
+                $this->withSeparatorAfter($this->beforeContext, Literal::Left_Curly_Bracket->value),
+                $this->textToReplace,
+                $this->withSeparatorBefore($this->afterContext, Literal::Right_Curly_Bracket->value),
+                Literal::Greater_Than_Sign->value . $this->completedResult,
+                $this->withSeparatorBefore($this->resultToRevisit, Literal::Vertical_Line->value)
+            ),
             TransliterationDirection::REVERSE => $this->completedResult . ($this->resultToRevisit !== null ? Literal::Vertical_Line->value : '') . $this->resultToRevisit . Literal::Less_Than_Sign->value . $this->beforeContext . ($this->beforeContext !== null ? Literal::Left_Curly_Bracket->value : '') . $this->textToReplace . ($this->afterContext !== null ? Literal::Right_Curly_Bracket->value : '') . $this->afterContext,
         };
+    }
+
+    protected function withSeparatorBefore(string $text, string|null $separator): string
+    {
+        if ($separator === null) {
+            return '';
+        }
+        
+        return $separator . $text;
+    }
+
+    protected function withSeparatorAfter(string $text, string|null $separator): string
+    {
+        if ($separator === null) {
+            return '';
+        }
+        
+        return $text . $separator;
     }
 }
