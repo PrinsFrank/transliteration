@@ -27,31 +27,31 @@ final class Conversion implements Stringable
         return match ($this->conversionDirection) {
             TransliterationDirection::FORWARD => sprintf(
                 '%s%s%s%s%s',
-                $this->withSeparatorAfter($this->beforeContext, Literal::Left_Curly_Bracket->value),
+                $this->withSeparatorAfter($this->beforeContext, Literal::Left_Curly_Bracket),
                 $this->textToReplace,
-                $this->withSeparatorBefore($this->afterContext, Literal::Right_Curly_Bracket->value),
-                Literal::Greater_Than_Sign->value . $this->completedResult,
-                $this->withSeparatorBefore($this->resultToRevisit, Literal::Vertical_Line->value)
+                $this->withSeparatorBefore($this->afterContext, Literal::Right_Curly_Bracket),
+                $this->withSeparatorBefore($this->completedResult, Literal::Greater_Than_Sign),
+                $this->withSeparatorBefore($this->resultToRevisit, Literal::Vertical_Line)
             ),
             TransliterationDirection::REVERSE => $this->completedResult . ($this->resultToRevisit !== null ? Literal::Vertical_Line->value : '') . $this->resultToRevisit . Literal::Less_Than_Sign->value . $this->beforeContext . ($this->beforeContext !== null ? Literal::Left_Curly_Bracket->value : '') . $this->textToReplace . ($this->afterContext !== null ? Literal::Right_Curly_Bracket->value : '') . $this->afterContext,
         };
     }
 
-    protected function withSeparatorBefore(string|null $text, string $separator): string
+    protected function withSeparatorBefore(string|null $text, Literal $separator): string
     {
         if ($text === null) {
             return '';
         }
         
-        return $separator . $text;
+        return $separator->value . $text;
     }
 
-    protected function withSeparatorAfter(string|null $text, string $separator): string
+    protected function withSeparatorAfter(string|null $text, Literal $separator): string
     {
         if ($text === null) {
             return '';
         }
         
-        return $text . $separator;
+        return $text . $separator->value;
     }
 }
