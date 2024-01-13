@@ -120,6 +120,37 @@ class TransliteratorBuilder
         return $this->addConversion(new Conversion($string, $with));
     }
 
+    public function IPAToEnglishApproximation(): static
+    {
+        return $this->replace('dʒ', 'g')
+            ->replace('kʰ', 'c')
+            ->replace('kʷ', 'qu')
+            ->replace('kᶣ', 'cu')
+            ->replace('ɫ', 'll')
+            ->replace('ŋ', 'n')
+            ->replace('ɲ', 'n')
+            ->replace('pʰ', 'p')
+            ->replace('ʃ', 'sh')
+            ->replace('tʰ', 't')
+            ->replace('tʃ', 'ch')
+            ->replace('aː', 'a')
+            ->replace('ɛ', 'e')
+            ->replace('eː', 'a')
+            ->replace('ɪ', 'i')
+            ->replace('iː', 'i')
+            ->replace('ɔ', 'o')
+            ->replace('oː', 'aw')
+            ->replace('ʊ', 'u')
+            ->replace('ʌ', 'u')
+            ->replace('uː', 'u')
+            ->replace('yː', 'u')
+            ->replace('ae̯', 'igh')
+            ->replace('oe̯', 'oy')
+            ->replace('au̯', 'ow')
+            ->replace('ei̯', 'ay')
+            ->replace('ui̯', 'ui');
+    }
+
     public function getTransliterator(): Transliterator
     {
         if ($this->containsRuleSyntax() === true) {

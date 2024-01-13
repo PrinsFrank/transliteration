@@ -43,13 +43,12 @@ class TransliteratorBuilderTest extends TestCase
         $transliterator = (new TransliteratorBuilder())
             ->toASCII()
             ->replace('\u002D', '\u0020')
-            ->replace('ʌ', 'e')
-            ->replace('Ɔ', 'O')
+            ->IPAToEnglishApproximation()
             ->keep((new Filter())->addRange('a', 'z')->addRange('A', 'Z')->addChar(' '))
         ;
 
         static::assertSame(
-            'Naxi Geba naci geba Na Khi Ggo baw Nakhi Geba',
+            'Naxi Geba naci guba Na Khi Ggo baw Nakhi Geba',
             $transliterator->transliterate('Naxi Geba (na²¹ɕi³³ gʌ²¹ba²¹, \'Na-\'Khi ²Ggŏ-¹baw, Nakhi Geba)')
         );
         static::assertSame(
