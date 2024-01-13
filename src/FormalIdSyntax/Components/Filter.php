@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace PrinsFrank\Transliteration\FormalIdSyntax\Components;
 
 use PrinsFrank\Standards\InvalidArgumentException;
+use PrinsFrank\Transliteration\Enum\Literal;
 use Stringable;
 
 /**
