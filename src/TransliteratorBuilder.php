@@ -122,8 +122,10 @@ class TransliteratorBuilder
 
     public function getTransliterator(): Transliterator
     {
-        if ($this->containsRuleComponent() === true) {
-            return $this->typedTransliterator->create(new RuleList($this->globalFilter, $this->conversions), $this->direction);
+        foreach ($this->conversions as $conversion) {
+            if ($conversion instanceof Conversion || $conversion instanceof VariableDefinition) {
+                return $this->typedTransliterator->create(new RuleList($this->globalFilter, $this->conversions), $this->direction);
+            }
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
@@ -135,8 +137,10 @@ class TransliteratorBuilder
 
     public function transliterate(string $string): string
     {
-        if ($this->containsRuleComponent() === true) {
-            return $this->typedTransliterator->transliterate($string, new RuleList($this->globalFilter, $this->conversions), $this->direction);
+        foreach ($this->conversions as $conversion) {
+            if ($conversion instanceof Conversion || $conversion instanceof VariableDefinition) {
+                return $this->typedTransliterator->transliterate($string, new RuleList($this->globalFilter, $this->conversions), $this->direction);
+            }
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
@@ -144,16 +148,5 @@ class TransliteratorBuilder
         }
 
         return $this->typedTransliterator->transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
-    }
-
-    public function containsRuleComponent(): bool
-    {
-        foreach ($this->conversions as $conversion) {
-            if ($conversion instanceof Conversion || $conversion instanceof VariableDefinition) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
