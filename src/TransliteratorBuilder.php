@@ -122,10 +122,8 @@ class TransliteratorBuilder
 
     public function getTransliterator(): Transliterator
     {
-        foreach ($this->conversions as $conversion) {
-            if ($conversion instanceof Conversion || $conversion instanceof VariableDefinition) {
-                return $this->typedTransliterator->create(new RuleList($this->globalFilter, $this->conversions), $this->direction);
-            }
+        if ($this->containsRuleSyntax() === true) {
+            return $this->typedTransliterator->create(new RuleList($this->globalFilter, $this->conversions), $this->direction);
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
@@ -137,10 +135,8 @@ class TransliteratorBuilder
 
     public function transliterate(string $string): string
     {
-        foreach ($this->conversions as $conversion) {
-            if ($conversion instanceof Conversion || $conversion instanceof VariableDefinition) {
-                return $this->typedTransliterator->transliterate($string, new RuleList($this->globalFilter, $this->conversions), $this->direction);
-            }
+        if ($this->containsRuleSyntax() === true) {
+            return $this->typedTransliterator->transliterate($string, new RuleList($this->globalFilter, $this->conversions), $this->direction);
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
@@ -148,5 +144,17 @@ class TransliteratorBuilder
         }
 
         return $this->typedTransliterator->transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
+    }
+
+    /** @phpstan-assert-if-false list<SingleID> $this->conversions */
+    private function containsRuleSyntax(): bool
+    {
+        foreach ($this->conversions as $conversion) {
+            if ($conversion instanceof SingleID === false) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
