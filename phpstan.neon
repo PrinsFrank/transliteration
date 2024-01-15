@@ -14,8 +14,6 @@ parameters:
             - 'PHPUnit\Framework\Exception'
             - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
     treatPhpDocTypesAsCertain: false
-    ignoreErrors:
-        - "#^Method PrinsFrank\\\\Transliteration\\\\TypedTransliterator\\:\\:listIDs\\(\\) should return list\\<string\\> but returns array\\.$#"
 includes:
     - phar://phpstan.phar/conf/bleedingEdge.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
