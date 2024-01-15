@@ -14,7 +14,7 @@ use Stringable;
  */
 final class Filter implements Stringable
 {
-    /** @var list<string|array{0: string, 1: string}> */
+    /** @var list<Character|array{0: string, 1: string}> */
     private array $set = [];
 
     private bool $inverse = false;
@@ -27,48 +27,25 @@ final class Filter implements Stringable
         }
 
         foreach ($this->set as $set) {
-            if (is_string($set)) {
-                $string .= $set;
+            if ($set instanceof Character) {
+                $string .= $set->__toString();
             } else {
-                $string .= $set[0] . Literal::Dash->value . $set[1];
+                $string .= $set[0]->__toString() . Literal::Dash->value . $set[1]->__toString();
             }
         }
 
         return $string . Literal::Square_Bracket_Close->value;
     }
 
-    /**
-     * @phpstan-assert non-empty-string $from
-     * @phpstan-assert non-empty-string $to
-     *
-     * @throws InvalidArgumentException
-     */
-    public function addRange(string $from, string $to): self
+    public function addRange(Character $from, Character $to): self
     {
-        if (mb_strlen($from) !== 1 || mb_strlen($to) !== 1) {
-            throw new InvalidArgumentException('Only single multibyte characters are allowed');
-        }
-
         $this->set[] = [$from, $to];
 
         return $this;
     }
 
-    /**
-     * @phpstan-assert non-empty-string $char
-     *
-     * @throws InvalidArgumentException
-     */
-    public function addChar(string $char): self
+    public function addChar(Character $char): self
     {
-        if (mb_strlen($char) !== 1) {
-            throw new InvalidArgumentException('Only single multibyte characters are allowed');
-        }
-
-        if ($char === ' ') {
-            $char = '\u0020';
-        }
-
         $this->set[] = $char;
 
         return $this;

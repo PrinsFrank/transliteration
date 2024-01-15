@@ -6,6 +6,7 @@ namespace PrinsFrank\Transliteration\Tests\Feature;
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
@@ -22,7 +23,12 @@ class TransliteratorBuilderTest extends TestCase
     {
         $transliterator = (new TransliteratorBuilder())
             ->toASCII()
-            ->keep((new Filter())->addRange('a', 'z')->addRange('A', 'Z')->addChar(' '))
+            ->keep(
+                (new Filter())
+                    ->addRange(new Character('a'), new Character('z'))
+                    ->addRange(new Character('A'), new Character('Z'))
+                    ->addChar(new Character(' '))
+            )
         ;
 
         static::assertSame(
@@ -45,9 +51,14 @@ class TransliteratorBuilderTest extends TestCase
     {
         $transliterator = (new TransliteratorBuilder())
             ->toASCII()
-            ->replace('\u002D', '\u0020')
+            ->replace('-', ' ')
             ->IPAToEnglishApproximation()
-            ->keep((new Filter())->addRange('a', 'z')->addRange('A', 'Z')->addChar(' '))
+            ->keep(
+                (new Filter())
+                    ->addRange(new Character('a'), new Character('z'))
+                    ->addRange(new Character('A'), new Character('Z'))
+                    ->addChar(new Character(' '))
+            )
         ;
 
         static::assertSame(
