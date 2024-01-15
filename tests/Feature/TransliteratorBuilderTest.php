@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace PrinsFrank\Transliteration\Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
-use PrinsFrank\Standards\InvalidArgumentException;
+use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
+use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
@@ -15,6 +16,7 @@ class TransliteratorBuilderTest extends TestCase
      * Examples from prinsfrank/standards
      *
      * @throws InvalidArgumentException
+     * @throws UnableToCreateTransliteratorException
      */
     public function testTransliteratorBuilderWithScriptNamesInNativeLanguages(): void
     {
@@ -37,6 +39,7 @@ class TransliteratorBuilderTest extends TestCase
      * Examples from prinsfrank/standards
      *
      * @throws InvalidArgumentException
+     * @throws UnableToCreateTransliteratorException
      */
     public function testTransliteratorBuilderWithScriptNamesInNativeLanguagesWithReplacements(): void
     {
