@@ -37,7 +37,11 @@ final class Filter implements Stringable
         return $string . Literal::Square_Bracket_Close->value;
     }
 
-    /** @throws InvalidArgumentException */
+    /**
+     * @param string<1> $from
+     * @param string<1< $to
+     * @throws InvalidArgumentException
+     */
     public function addRange(string $from, string $to): self
     {
         if (mb_strlen($from) !== 1 || mb_strlen($to) !== 1) {
@@ -49,7 +53,10 @@ final class Filter implements Stringable
         return $this;
     }
 
-    /** @throws InvalidArgumentException */
+    /**
+     * @param string<1> $char
+     * @throws InvalidArgumentException
+     */
     public function addChar(string $char): self
     {
         if (mb_strlen($char) !== 1) {

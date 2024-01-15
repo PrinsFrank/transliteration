@@ -12,6 +12,7 @@ use Stringable;
  */
 final class Conversion implements Stringable
 {
+    /** @param non-empty-string $textToReplace */
     public function __construct(
         public readonly string $textToReplace,
         public readonly string $completedResult,
