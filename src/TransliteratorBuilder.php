@@ -117,11 +117,17 @@ class TransliteratorBuilder
         return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter->inverse()));
     }
 
+    /**
+     * @phpstan-assert non-empty-string $string
+     *
+     * @throws InvalidArgumentException
+     */
     public function replace(string $string, string $with): static
     {
         return $this->addConversion(new Conversion($string, $with));
     }
 
+    /** @throws InvalidArgumentException */
     public function IPAToEnglishApproximation(): static
     {
         return $this->replace('dʒ', 'g')
