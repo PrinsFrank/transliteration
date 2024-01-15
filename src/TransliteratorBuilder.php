@@ -120,6 +120,48 @@ class TransliteratorBuilder
         return $this->addConversion(new Conversion($string, $with));
     }
 
+    public function IPAToEnglishApproximation(): static
+    {
+        return $this->replace('dʒ', 'g')
+            ->replace('kʰ', 'c')
+            ->replace('kʷ', 'qu')
+            ->replace('kᶣ', 'cu')
+            ->replace('ɫ', 'll')
+            ->replace('ŋ', 'n')
+            ->replace('Ŋ', 'N')
+            ->replace('ɲ', 'n')
+            ->replace('Ɲ', 'N')
+            ->replace('pʰ', 'p')
+            ->replace('ʃ', 'sh')
+            ->replace('Ʃ', 'SH')
+            ->replace('tʰ', 't')
+            ->replace('tʃ', 'ch')
+            ->replace('aː', 'a')
+            ->replace('Aː', 'A')
+            ->replace('ɛ', 'e')
+            ->replace('Ɛ', 'E')
+            ->replace('eː', 'a')
+            ->replace('Eː', 'A')
+            ->replace('ɪ', 'i')
+            ->replace('Ɪ', 'I')
+            ->replace('iː', 'i')
+            ->replace('Iː', 'I')
+            ->replace('ɔ', 'o')
+            ->replace('Ɔ', 'O')
+            ->replace('oː', 'aw')
+            ->replace('ʊ', 'u')
+            ->replace('Ʊ', 'U')
+            ->replace('ʌ', 'u')
+            ->replace('Ʌ', 'U')
+            ->replace('uː', 'u')
+            ->replace('yː', 'u')
+            ->replace('ae̯', 'igh')
+            ->replace('oe̯', 'oy')
+            ->replace('au̯', 'ow')
+            ->replace('ei̯', 'ay')
+            ->replace('ui̯', 'ui');
+    }
+
     public function getTransliterator(): Transliterator
     {
         if ($this->containsRuleSyntax() === true) {
