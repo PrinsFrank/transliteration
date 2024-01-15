@@ -11,6 +11,7 @@ class Character implements Stringable
 {
     /**
      * @phpstan-assert non-empty-string $char
+     *
      * @throws InvalidArgumentException
      */
     public function __construct(
