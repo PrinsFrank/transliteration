@@ -25,7 +25,7 @@ class Character implements Stringable
     /**
      * @template T of string|null
      * @param T $string
-     * @return T
+     * @return (T is string ? string : null)
      */
     public static function escape(?string $string): ?string
     {

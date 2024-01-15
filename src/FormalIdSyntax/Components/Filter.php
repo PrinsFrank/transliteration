@@ -13,7 +13,7 @@ use Stringable;
  */
 final class Filter implements Stringable
 {
-    /** @var list<Character|array{0: string, 1: string}> */
+    /** @var list<Character|array{0: Character, 1: Character}> */
     private array $set = [];
 
     private bool $inverse = false;
