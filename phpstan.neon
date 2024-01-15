@@ -13,10 +13,7 @@ parameters:
         uncheckedExceptionClasses:
             - 'PHPUnit\Framework\Exception'
             - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
-    ignoreErrors:
-        - "#^Method PrinsFrank\\\\Transliteration\\\\TypedTransliterator\\:\\:listIDs\\(\\) has PrinsFrank\\\\Transliteration\\\\Exception\\\\ListIDsUnavailableException in PHPDoc @throws tag but it's not thrown\\.$#"
-        - "#^Method PrinsFrank\\\\Transliteration\\\\TypedTransliterator\\:\\:listIDs\\(\\) should return list\\<string\\> but returns array\\.$#"
-        - "#^Strict comparison using \\=\\=\\= between array and false will always evaluate to false\\.$#"
+    treatPhpDocTypesAsCertain: false
 includes:
     - phar://phpstan.phar/conf/bleedingEdge.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon

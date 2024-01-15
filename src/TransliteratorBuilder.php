@@ -9,6 +9,8 @@ use PrinsFrank\Standards\Scripts\ScriptName;
 use PrinsFrank\Transliteration\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Enum\Variant;
+use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
+use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
@@ -162,6 +164,10 @@ class TransliteratorBuilder
             ->replace('ui̯', 'ui');
     }
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws UnableToCreateTransliteratorException
+     */
     public function getTransliterator(): Transliterator
     {
         if ($this->containsRuleSyntax() === true) {
@@ -175,6 +181,10 @@ class TransliteratorBuilder
         return $this->typedTransliterator->create(new CompoundID($this->conversions, $this->globalFilter), $this->direction);
     }
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws UnableToCreateTransliteratorException
+     */
     public function transliterate(string $string): string
     {
         if ($this->containsRuleSyntax() === true) {

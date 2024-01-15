@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace PrinsFrank\Transliteration\Rule;
 
 use PrinsFrank\Transliteration\Enum\Literal;
+use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
@@ -15,12 +16,18 @@ use Stringable;
  */
 final class RuleList implements Stringable
 {
-    /** @param list<SingleID|Conversion|VariableDefinition> $rules */
+    /**
+     * @param array<SingleID|Conversion|VariableDefinition> $rules
+     * @throws InvalidArgumentException
+     */
     public function __construct(
         public readonly Filter|null $globalFilter = null,
         public readonly array $rules,
         public readonly Filter|null $inverseFilter = null,
     ) {
+        foreach ($this->rules as $rule) {
+            $rule instanceof SingleID === true || $rule instanceof Conversion === true || $rule instanceof VariableDefinition === true || throw new InvalidArgumentException('Param $rules should be an array of "' . SingleID::class . '|' . Conversion::class . '|' . VariableDefinition::class . '"');
+        }
     }
 
     public function __toString(): string

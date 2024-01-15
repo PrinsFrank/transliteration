@@ -10,13 +10,17 @@ use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 /** @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax */
 final class CompoundID implements ID
 {
-    /** @param list<SingleID> $singleIds */
+    /**
+     * @param list<SingleID> $singleIds
+     * @throws InvalidArgumentException
+     */
     public function __construct(
         public readonly array       $singleIds,
         public readonly Filter|null $globalFilter = null,
     ) {
-        // @phpstan-ignore-next-line
-        array_map(static function (mixed $singleId) { $singleId instanceof SingleID || throw new InvalidArgumentException('Param $singleIds should be an array of "' . SingleID::class . '"');}, $this->singleIds);
+        foreach ($this->singleIds as $singleId) {
+            $singleId instanceof SingleID === true || throw new InvalidArgumentException('Param $singleIds should be an array of "' . SingleID::class . '"');
+        }
     }
 
     public function __toString()
