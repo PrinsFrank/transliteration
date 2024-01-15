@@ -127,6 +127,7 @@ class TransliteratorBuilder
         return $this->addConversion(new Conversion($string, $with));
     }
 
+    /** @throws InvalidArgumentException */
     public function IPAToEnglishApproximation(): static
     {
         return $this->replace('dʒ', 'g')
