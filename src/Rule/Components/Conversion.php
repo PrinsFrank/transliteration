@@ -6,6 +6,7 @@ namespace PrinsFrank\Transliteration\Rule\Components;
 use PrinsFrank\Transliteration\Enum\Literal;
 use PrinsFrank\Transliteration\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
 use Stringable;
 
 /**
@@ -34,18 +35,18 @@ final class Conversion implements Stringable
     public function __toString(): string
     {
         return match ($this->conversionDirection) {
-            TransliterationDirection::FORWARD => $this->beforeContext . ($this->beforeContext !== null ? Literal::Left_Curly_Bracket->value : '')
-                . $this->textToReplace
-                . ($this->afterContext !== null ? Literal::Right_Curly_Bracket->value : '') . $this->afterContext
+            TransliterationDirection::FORWARD => Character::escape($this->beforeContext) . ($this->beforeContext !== null ? Literal::Left_Curly_Bracket->value : '')
+                . Character::escape($this->textToReplace)
+                . ($this->afterContext !== null ? Literal::Right_Curly_Bracket->value : '') . Character::escape($this->afterContext)
                 . Literal::Greater_Than_Sign->value
-                . $this->completedResult
-                . ($this->resultToRevisit !== null ? Literal::Vertical_Line->value : '') . $this->resultToRevisit,
-            TransliterationDirection::REVERSE => $this->completedResult
-                . ($this->resultToRevisit !== null ? Literal::Vertical_Line->value : '') . $this->resultToRevisit
+                . Character::escape($this->completedResult)
+                . ($this->resultToRevisit !== null ? Literal::Vertical_Line->value : '') . Character::escape($this->resultToRevisit),
+            TransliterationDirection::REVERSE => Character::escape($this->completedResult)
+                . ($this->resultToRevisit !== null ? Literal::Vertical_Line->value : '') . Character::escape($this->resultToRevisit)
                 . Literal::Less_Than_Sign->value
-                . $this->beforeContext . ($this->beforeContext !== null ? Literal::Left_Curly_Bracket->value : '')
-                . $this->textToReplace
-                . ($this->afterContext !== null ? Literal::Right_Curly_Bracket->value : '') . $this->afterContext,
+                . Character::escape($this->beforeContext) . ($this->beforeContext !== null ? Literal::Left_Curly_Bracket->value : '')
+                . Character::escape($this->textToReplace)
+                . ($this->afterContext !== null ? Literal::Right_Curly_Bracket->value : '') . Character::escape($this->afterContext),
         };
     }
 }
