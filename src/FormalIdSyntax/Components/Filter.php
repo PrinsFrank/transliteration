@@ -38,8 +38,8 @@ final class Filter implements Stringable
     }
 
     /**
-     * @param string<1> $from
-     * @param string<1< $to
+     * @param non-empty-string $from
+     * @param nan-empty-string $to
      * @throws InvalidArgumentException
      */
     public function addRange(string $from, string $to): self
@@ -54,7 +54,7 @@ final class Filter implements Stringable
     }
 
     /**
-     * @param string<1> $char
+     * @param non-empty-string $char
      * @throws InvalidArgumentException
      */
     public function addChar(string $char): self
