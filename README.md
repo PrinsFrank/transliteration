@@ -19,8 +19,8 @@
 
 To start right away, run the following command in your composer project;
 
-```composer require prinsfrank/transliterator-wrapper```
+```composer require prinsfrank/transliteration```
 
 Or for development only;
 
-```composer require prinsfrank/transliterator-wrapper --dev```
+```composer require prinsfrank/transliteration --dev```
