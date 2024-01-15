@@ -117,7 +117,11 @@ class TransliteratorBuilder
         return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter->inverse()));
     }
 
-    /** @param non-empty-string $string */
+    /**
+     * @phpstan-assert non-empty-string $string
+     *
+     * @throws InvalidArgumentException
+     */
     public function replace(string $string, string $with): static
     {
         return $this->addConversion(new Conversion($string, $with));

@@ -38,8 +38,9 @@ final class Filter implements Stringable
     }
 
     /**
-     * @param non-empty-string $from
-     * @param nan-empty-string $to
+     * @phpstan-assert non-empty-string $from
+     * @phpstan-assert non-empty-string $to
+     *
      * @throws InvalidArgumentException
      */
     public function addRange(string $from, string $to): self
@@ -54,7 +55,8 @@ final class Filter implements Stringable
     }
 
     /**
-     * @param non-empty-string $char
+     * @phpstan-assert non-empty-string $char
+     *
      * @throws InvalidArgumentException
      */
     public function addChar(string $char): self

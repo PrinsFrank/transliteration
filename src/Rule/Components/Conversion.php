@@ -5,6 +5,7 @@ namespace PrinsFrank\Transliteration\Rule\Components;
 
 use PrinsFrank\Transliteration\Enum\Literal;
 use PrinsFrank\Transliteration\Enum\TransliterationDirection;
+use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use Stringable;
 
 /**
@@ -12,7 +13,11 @@ use Stringable;
  */
 final class Conversion implements Stringable
 {
-    /** @param non-empty-string $textToReplace */
+    /**
+     * @phpstan-assert non-empty-string $textToReplace
+     *
+     * @throws InvalidArgumentException
+     */
     public function __construct(
         public readonly string $textToReplace,
         public readonly string $completedResult,
@@ -21,6 +26,9 @@ final class Conversion implements Stringable
         public readonly string|null $resultToRevisit = null,
         public readonly TransliterationDirection $conversionDirection = TransliterationDirection::FORWARD,
     ) {
+        if ($this->textToReplace === '') {
+            throw new InvalidArgumentException('$textToReplace should be a non-empty string');
+        }
     }
 
     public function __toString(): string
