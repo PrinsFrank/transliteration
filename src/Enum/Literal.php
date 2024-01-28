@@ -6,30 +6,37 @@ namespace PrinsFrank\Transliteration\Enum;
 /** @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax */
 enum Literal: string
 {
+    case Space                = ' ';
+    case Exclamation_Mark     = '!';
+    case Quotation_Mark       = '"';
+    case Hash                 = '#';
+    case Dollar_Sign          = '$';
+    case Percent_Sign         = '%';
+    case Ampersand            = '&';
+    case Apostrophe           = '\'';
+    case Left_Parenthesis     = '(';
+    case Right_Parenthesis    = ')';
+    case Asterisk             = '*';
+    case Plus_Sign            = '+';
+    case Comma                = ',';
+    case Dash                 = '-';
+    case Full_Stop            = '.';
+    case Slash                = '/';
     case Colon                = ':';
     case Semicolon            = ';';
-    case Dash                 = '-';
-    case Slash                = '/';
+    case Less_Than_Sign       = '<';
+    case Equals_Sign          = '=';
+    case Greater_Than_Sign    = '>';
+    case Question_Mark        = '?';
+    case At_Sign              = '@';
     case Square_Bracket_Open  = '[';
+    case Backslash            = '\\';
     case Square_Bracket_Close = ']';
     case Caret                = '^';
-    case DollarSign           = '$';
-    case EqualsSign           = '=';
-    case Space                = ' ';
+    case Low_Line             = '_';
+    case Backtick             = '`';
     case Left_Curly_Bracket   = '{';
-    case Right_Curly_Bracket  = '}';
-    case Greater_Than_Sign    = '>';
-    case Less_Than_Sign       = '<';
     case Vertical_Line        = '|';
-    case Low_Line             = '_'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Comma                = ','; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Apostrophe           = '\''; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Left_Parenthesis     = '('; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Right_Parenthesis    = ')'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Quotation_Mark       = '"'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Exclamation_Mark     = '!'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Tilde                = '~'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Full_Stop            = '.'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Question_Mark        = '?'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
-    case Asterisk             = '*'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
+    case Right_Curly_Bracket  = '}';
+    case Tilde                = '~';
 }
