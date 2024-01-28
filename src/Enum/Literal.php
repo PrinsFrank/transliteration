@@ -21,4 +21,5 @@ enum Literal: string
     case Greater_Than_Sign    = '>';
     case Less_Than_Sign       = '<';
     case Vertical_Line        = '|';
+    case Low_Line             = '_'; // No current usage but is an escaped character in conversions - See Character::Escape for indirect usage.
 }
