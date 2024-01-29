@@ -16,6 +16,6 @@ final class VariableDefinition implements Stringable
 
     public function __toString(): string
     {
-        return Literal::DollarSign->value . $this->name . Literal::Space->value . Literal::EqualsSign->value . Literal::Space->value . $this->value . Literal::Semicolon->value;
+        return Literal::Dollar_Sign->value . $this->name . Literal::Space->value . Literal::Equals_Sign->value . Literal::Space->value . $this->value . Literal::Semicolon->value;
     }
 }
