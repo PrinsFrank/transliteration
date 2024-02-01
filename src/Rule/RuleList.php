@@ -22,7 +22,7 @@ final class RuleList implements Stringable
      */
     public function __construct(
         public readonly Filter|null $globalFilter = null,
-        public readonly array $rules,
+        public readonly array $rules = [],
         public readonly Filter|null $inverseFilter = null,
     ) {
         foreach ($this->rules as $rule) {
