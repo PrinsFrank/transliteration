@@ -12,5 +12,3 @@ jobs:
     uses: prinsfrank/CI-PHP/.github/workflows/quality.yml@4a5f904a97d1347c0c3079e999b071ede9e4df89
     with:
       PHP_VERSION: '8.3'
-    secrets:
-      GH_TOKEN: ${{ github.token }}
