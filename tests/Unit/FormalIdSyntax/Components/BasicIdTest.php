@@ -5,7 +5,6 @@ namespace PrinsFrank\Transliteration\Tests\Unit\FormalIdSyntax\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Country\CountryAlpha2;
-use PrinsFrank\Standards\InvalidArgumentException;
 use PrinsFrank\Standards\Language\LanguageAlpha2;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptName;
@@ -21,8 +20,6 @@ class BasicIdTest extends TestCase
      *
      * @covers ::__construct
      * @covers ::__toString
-     *
-     * @throws InvalidArgumentException
      */
     public function testToString(): void
     {
