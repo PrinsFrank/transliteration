@@ -9,7 +9,7 @@ on:
 
 jobs:
   quality:
-    uses: prinsfrank/CI-PHP/.github/workflows/quality.yml
+    uses: prinsfrank/CI-PHP/.github/workflows/quality.yml@main
     with:
       PHP_VERSION: '8.3'
     secrets:
