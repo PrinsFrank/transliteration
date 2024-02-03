@@ -7,7 +7,7 @@ use PrinsFrank\Transliteration\Enum\Literal;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use Stringable;
 
-class Character implements Stringable
+final class Character implements Stringable
 {
     /**
      * @phpstan-assert non-empty-string $char
