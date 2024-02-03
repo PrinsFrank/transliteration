@@ -32,11 +32,11 @@ final class VariableDefinition implements Stringable
     public function __toString(): string
     {
         return Literal::Dollar_Sign->value
-               . $this->name
-               . Literal::Space->value
-               . Literal::Equals_Sign->value
-               . Literal::Space->value
-               . Character::escape($this->value)
-               . Literal::Semicolon->value;
+            . $this->name
+            . Literal::Space->value
+            . Literal::Equals_Sign->value
+            . Literal::Space->value
+            . Character::escape($this->value)
+            . Literal::Semicolon->value;
     }
 }
