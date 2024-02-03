@@ -194,7 +194,7 @@ class TransliteratorBuilder
     public function transliterate(string $string): string
     {
         if ($this->containsRuleSyntax() === true) {
-            return $this->typedTransliterator->transliterate($string, new RuleList($this->conversions, $this->globalFilter,), $this->direction);
+            return $this->typedTransliterator->transliterate($string, new RuleList($this->conversions, $this->globalFilter), $this->direction);
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
@@ -204,7 +204,7 @@ class TransliteratorBuilder
         return $this->typedTransliterator->transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
     }
 
-    /** @phpstan-assert-if-false list<SingleID> $this->conversions */
+    /** @phpstan-assert-if-false non-empty-list<SingleID> $this->conversions */
     private function containsRuleSyntax(): bool
     {
         foreach ($this->conversions as $conversion) {
