@@ -20,6 +20,10 @@ final class Filter implements Stringable
 
     public function __toString(): string
     {
+        if ($this->set === []) {
+            return '';
+        }
+
         $string = Literal::Square_Bracket_Open->value;
         if ($this->inverse === true) {
             $string .= Literal::Caret->value;

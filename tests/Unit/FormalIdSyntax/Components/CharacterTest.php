@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\FormalIdSyntax\Components;
+namespace PrinsFrank\Transliteration\Tests\Unit\FormalIdSyntax\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
