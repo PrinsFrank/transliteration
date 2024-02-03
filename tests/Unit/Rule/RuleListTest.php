@@ -14,7 +14,7 @@ class RuleListTest extends TestCase
     public function testConstructThrowsExceptionWhenRulesIsEmpty(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('');
+        $this->expectExceptionMessage('Param $rules should be a non-empty array');
         /** @phpstan-ignore-next-line */
         new RuleList([], null, null);
     }
@@ -23,7 +23,7 @@ class RuleListTest extends TestCase
     public function testConstructThrowsExceptionWhenRulesIsOfInvalidType(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('');
+        $this->expectExceptionMessage('Param $rules should be an array of "PrinsFrank\Transliteration\FormalIdSyntax\SingleID|PrinsFrank\Transliteration\Rule\Components\Conversion|PrinsFrank\Transliteration\Rule\Components\VariableDefinition"');
         /** @phpstan-ignore-next-line */
         new RuleList([null], null, null);
     }

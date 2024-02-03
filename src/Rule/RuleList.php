@@ -25,6 +25,10 @@ final class RuleList implements Stringable
         public readonly Filter|null $globalFilter = null,
         public readonly Filter|null $inverseFilter = null,
     ) {
+        if ($rules === []) {
+            throw new InvalidArgumentException('Param $rules should be a non-empty array');
+        }
+
         foreach ($this->rules as $rule) {
             $rule instanceof SingleID === true || $rule instanceof Conversion === true || $rule instanceof VariableDefinition === true || throw new InvalidArgumentException('Param $rules should be an array of "' . SingleID::class . '|' . Conversion::class . '|' . VariableDefinition::class . '"');
         }
