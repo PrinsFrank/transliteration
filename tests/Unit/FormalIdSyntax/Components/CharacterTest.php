@@ -40,7 +40,7 @@ class CharacterTest extends TestCase
     /** @covers ::escape */
     public function testEscape(): void
     {
-
+        static::assertSame(null, Character::escape(null));
         static::assertSame('a', Character::escape('a'));
         static::assertSame('\u003b', Character::escape(';'));
         static::assertSame('\u003ba\u003b', Character::escape(';a;'));
