@@ -9,6 +9,6 @@ on:
 
 jobs:
   quality:
-    uses: prinsfrank/CI-PHP/.github/workflows/quality.yml@4a5f904a97d1347c0c3079e999b071ede9e4df89
+    uses: prinsfrank/CI-PHP/.github/workflows/quality.yml@https://github.com/PrinsFrank/CI-PHP/commit/e35bf8e686fbbbd05ecc8c056ff3487b1b95f865
     with:
       PHP_VERSION: '8.3'
