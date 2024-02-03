@@ -177,7 +177,7 @@ class TransliteratorBuilder
     public function getTransliterator(): Transliterator
     {
         if ($this->containsRuleSyntax() === true) {
-            return $this->typedTransliterator->create(new RuleList($this->globalFilter, $this->conversions), $this->direction);
+            return $this->typedTransliterator->create(new RuleList($this->conversions, $this->globalFilter), $this->direction);
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
@@ -194,7 +194,7 @@ class TransliteratorBuilder
     public function transliterate(string $string): string
     {
         if ($this->containsRuleSyntax() === true) {
-            return $this->typedTransliterator->transliterate($string, new RuleList($this->globalFilter, $this->conversions), $this->direction);
+            return $this->typedTransliterator->transliterate($string, new RuleList($this->conversions, $this->globalFilter,), $this->direction);
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
