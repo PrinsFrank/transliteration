@@ -21,8 +21,6 @@ class BasicIdTest extends TestCase
      *
      * @covers ::__construct
      * @covers ::__toString
-     *
-     * @throws InvalidArgumentException
      */
     public function testToString(): void
     {
