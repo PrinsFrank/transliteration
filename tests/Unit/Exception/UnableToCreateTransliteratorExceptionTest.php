@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Exception;
+namespace PrinsFrank\Transliteration\Tests\Unit\Exception;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
