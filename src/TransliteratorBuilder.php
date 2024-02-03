@@ -176,6 +176,10 @@ class TransliteratorBuilder
      */
     public function getTransliterator(): Transliterator
     {
+        if ($this->conversions === []) {
+            throw new UnableToCreateTransliteratorException('There are no conversions', '');
+        }
+
         if ($this->containsRuleSyntax() === true) {
             return $this->typedTransliterator->create(new RuleList($this->conversions, $this->globalFilter), $this->direction);
         }
@@ -193,6 +197,10 @@ class TransliteratorBuilder
      */
     public function transliterate(string $string): string
     {
+        if ($this->conversions === []) {
+            throw new UnableToCreateTransliteratorException('There are no conversions', '');
+        }
+
         if ($this->containsRuleSyntax() === true) {
             return $this->typedTransliterator->transliterate($string, new RuleList($this->conversions, $this->globalFilter), $this->direction);
         }
