@@ -17,7 +17,7 @@ use Stringable;
 final class RuleList implements Stringable
 {
     /**
-     * @param array<SingleID|Conversion|VariableDefinition> $rules
+     * @param non-empty-array<SingleID|Conversion|VariableDefinition> $rules
      * @throws InvalidArgumentException
      */
     public function __construct(
