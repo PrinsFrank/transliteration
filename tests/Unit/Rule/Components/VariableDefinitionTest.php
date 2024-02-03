@@ -10,7 +10,7 @@ use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
 /** @coversDefaultClass \PrinsFrank\Transliteration\Rule\Components\VariableDefinition */
 class VariableDefinitionTest extends TestCase
 {
-    /** @covers ::__toString */
+    /** @covers ::__construct */
     public function testToStringThrowsExceptionWhenNameIsEmpty(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -18,7 +18,7 @@ class VariableDefinitionTest extends TestCase
         new VariableDefinition('', 'a');
     }
 
-    /** @covers ::__toString */
+    /** @covers ::__construct */
     public function testToStringThrowsExceptionWhenValueIsEmpty(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -26,7 +26,7 @@ class VariableDefinitionTest extends TestCase
         new VariableDefinition('a', '');
     }
 
-    /** @covers ::__toString */
+    /** @covers ::__construct */
     public function testToStringThrowsExceptionWhenNameContainsSpecialCharacter(): void
     {
         $this->expectException(InvalidArgumentException::class);
