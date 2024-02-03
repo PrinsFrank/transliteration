@@ -204,7 +204,7 @@ class TransliteratorBuilder
         return $this->typedTransliterator->transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
     }
 
-    /** @phpstan-assert-if-true non-empty-array<Conversion|VariableDefinition> $this->conversions */
+    /** @phpstan-assert-if-false list<SingleID> $this->conversions */
     private function containsRuleSyntax(): bool
     {
         foreach ($this->conversions as $conversion) {
