@@ -53,7 +53,9 @@ class TypedTransliterator implements TypedTransliteratorInterface
     {
         $ids = Transliterator::listIDs();
         if ($ids === false) {
+            // @codeCoverageIgnoreStart
             throw new ListIDsUnavailableException();
+            // @codeCoverageIgnoreEnd
         }
 
         return $ids;

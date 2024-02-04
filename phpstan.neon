@@ -14,6 +14,8 @@ parameters:
             - 'PHPUnit\Framework\Exception'
             - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
     treatPhpDocTypesAsCertain: false
+    ignoreErrors:
+        - "#^Method PrinsFrank\\\\Transliteration\\\\Tests\\\\.+ throws checked exception .+ but it's missing from the PHPDoc @throws tag\\.$#"
 includes:
     - phar://phpstan.phar/conf/bleedingEdge.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
