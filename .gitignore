@@ -9,5 +9,8 @@ composer.lock
 .phpunit.result.cache
 coverage.xml
 
+# PHPStan
+.phpstan.result.cache
+
 # JetBrains
 .idea
