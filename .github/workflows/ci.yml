@@ -16,4 +16,3 @@ jobs:
     with:
       PHP_VERSION: '8.3'
     secrets: inherit
-
