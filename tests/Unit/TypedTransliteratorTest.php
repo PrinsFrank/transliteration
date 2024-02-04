@@ -34,7 +34,6 @@ class TypedTransliteratorTest extends TestCase
         );
         static::assertEquals(
             Transliterator::createFromRules('::Any-Latin;', Transliterator::REVERSE),
-
             (new TypedTransliterator())->create(new RuleList([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))]), TransliterationDirection::REVERSE)
         );
     }
