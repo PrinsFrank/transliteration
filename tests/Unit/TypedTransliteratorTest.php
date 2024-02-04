@@ -9,6 +9,7 @@ use PrinsFrank\Transliteration\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
+use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\RuleList;
 use PrinsFrank\Transliteration\TypedTransliterator;
 use Transliterator;
@@ -36,6 +37,12 @@ class TypedTransliteratorTest extends TestCase
 
             (new TypedTransliterator())->create(new RuleList([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))]), TransliterationDirection::REVERSE)
         );
+    }
+
+    /** @covers ::transliterate */
+    public function testTransliterate(): void
+    {
+        static::assertSame('bfoorbfoor', (new TypedTransliterator())->transliterate('foobar', new RuleList([new Conversion('foo', 'bar'), new SingleID(new BasicID(SpecialTag::Null)), new Conversion('a', 'foo')])));
     }
 
     /** @covers ::listIDs */
