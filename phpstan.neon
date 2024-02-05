@@ -12,6 +12,7 @@ parameters:
         implicitThrows: false
         uncheckedExceptionClasses:
             - 'PHPUnit\Framework\ExpectationFailedException'
+            - 'PHPUnit\Framework\GeneratorNotSupportedException'
             - 'SebastianBergmann\RecursionContext\InvalidArgumentException'
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
