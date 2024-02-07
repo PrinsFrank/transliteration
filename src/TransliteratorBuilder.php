@@ -21,6 +21,7 @@ use PrinsFrank\Transliteration\Rule\RuleList;
 use PrinsFrank\Transliteration\Transliterator\TypedTransliterator;
 use Transliterator;
 
+/** @api */
 class TransliteratorBuilder
 {
     /** @var list<SingleID|Conversion|VariableDefinition> */
