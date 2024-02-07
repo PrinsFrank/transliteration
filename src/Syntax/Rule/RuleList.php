@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Rule;
+namespace PrinsFrank\Transliteration\Syntax\Rule;
 
-use PrinsFrank\Transliteration\Enum\Literal;
+use PrinsFrank\Transliteration\Syntax\Enum\Literal;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
-use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
-use PrinsFrank\Transliteration\Rule\Components\Conversion;
-use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
+use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
+use PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion;
+use PrinsFrank\Transliteration\Syntax\Rule\Components\VariableDefinition;
 use Stringable;
 
 /**

@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit\Rule\Components;
+namespace PrinsFrank\Transliteration\Tests\Unit\Syntax\Rule\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
-use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
+use PrinsFrank\Transliteration\Syntax\Rule\Components\VariableDefinition;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\Rule\Components\VariableDefinition */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Syntax\Rule\Components\VariableDefinition */
 class VariableDefinitionTest extends TestCase
 {
     /** @covers ::__construct */

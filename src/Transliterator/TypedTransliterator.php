@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Transliterator;
 
-use PrinsFrank\Transliteration\Enum\TransliterationDirection;
+use PrinsFrank\Transliteration\Syntax\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Exception\ListIDsUnavailableException;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
-use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
-use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
-use PrinsFrank\Transliteration\Rule\RuleList;
+use PrinsFrank\Transliteration\Syntax\FormalId\CompoundID;
+use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
+use PrinsFrank\Transliteration\Syntax\Rule\RuleList;
 use Transliterator;
 
 /** @internal */

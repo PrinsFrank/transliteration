@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit\FormalIdSyntax\Components;
+namespace PrinsFrank\Transliteration\Tests\Unit\Syntax\FormalId\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Country\CountryAlpha2;
 use PrinsFrank\Standards\Language\LanguageAlpha2;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptName;
-use PrinsFrank\Transliteration\Enum\SpecialTag;
-use PrinsFrank\Transliteration\Enum\Variant;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
+use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
+use PrinsFrank\Transliteration\Syntax\Enum\Variant;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID */
 class BasicIdTest extends TestCase
 {
     /**

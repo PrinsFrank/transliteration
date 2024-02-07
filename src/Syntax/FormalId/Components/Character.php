@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\FormalIdSyntax\Components;
+namespace PrinsFrank\Transliteration\Syntax\FormalId\Components;
 
-use PrinsFrank\Transliteration\Enum\Literal;
+use PrinsFrank\Transliteration\Syntax\Enum\Literal;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use Stringable;
 

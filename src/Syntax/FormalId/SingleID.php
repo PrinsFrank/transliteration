@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\FormalIdSyntax;
+namespace PrinsFrank\Transliteration\Syntax\FormalId;
 
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
 
 /**
  * @api

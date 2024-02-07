@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit\FormalIdSyntax;
+namespace PrinsFrank\Transliteration\Tests\Unit\Syntax\FormalId;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
-use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Character;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
+use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\FormalIdSyntax\SingleID */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Syntax\FormalId\SingleID */
 class SingleIDTest extends TestCase
 {
     /**

@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Rule\Components;
+namespace PrinsFrank\Transliteration\Syntax\Rule\Components;
 
-use PrinsFrank\Transliteration\Enum\Literal;
+use PrinsFrank\Transliteration\Syntax\Enum\Literal;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Character;
 use Stringable;
 
 /** @api */
