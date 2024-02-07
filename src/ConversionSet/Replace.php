@@ -7,6 +7,7 @@ use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
+/** @api */
 class Replace implements ConversionSet
 {
     /** @param non-empty-string $string */

@@ -5,6 +5,7 @@ namespace PrinsFrank\Transliteration\ConversionSet;
 
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
+/** @api */
 interface ConversionSet
 {
     public function apply(TransliteratorBuilder $transliteratorBuilder): void;

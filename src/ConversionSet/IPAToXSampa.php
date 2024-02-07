@@ -6,6 +6,7 @@ namespace PrinsFrank\Transliteration\ConversionSet;
 use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
+/** @api */
 class IPAToXSampa implements ConversionSet
 {
     public function apply(TransliteratorBuilder $transliteratorBuilder): void

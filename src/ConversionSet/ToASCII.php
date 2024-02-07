@@ -7,6 +7,7 @@ use PrinsFrank\Standards\Scripts\ScriptName;
 use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
+/** @api */
 class ToASCII implements ConversionSet
 {
     public function apply(TransliteratorBuilder $transliteratorBuilder): void

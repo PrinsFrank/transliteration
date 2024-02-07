@@ -5,6 +5,7 @@ namespace PrinsFrank\Transliteration\ConversionSet;
 
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
+/** @api */
 class IPAToEnglishApproximation implements ConversionSet
 {
     public function apply(TransliteratorBuilder $transliteratorBuilder): void

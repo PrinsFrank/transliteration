@@ -9,6 +9,7 @@ use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
 use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
+/** @api */
 class Remove implements ConversionSet
 {
     public function __construct(
