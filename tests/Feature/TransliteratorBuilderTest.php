@@ -6,8 +6,8 @@ namespace PrinsFrank\Transliteration\Tests\Feature;
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Character;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
 /** @coversNothing */

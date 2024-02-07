@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit\Rule\Components;
+namespace PrinsFrank\Transliteration\Tests\Unit\Syntax\Rule\Components;
 
 use PHPUnit\Framework\TestCase;
-use PrinsFrank\Transliteration\Enum\TransliterationDirection;
+use PrinsFrank\Transliteration\Syntax\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
-use PrinsFrank\Transliteration\Rule\Components\Conversion;
+use PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\Rule\Components\Conversion */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion */
 class ConversionTest extends TestCase
 {
     /** @covers ::__construct */

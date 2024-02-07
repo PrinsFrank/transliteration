@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit\Rule;
+namespace PrinsFrank\Transliteration\Tests\Unit\Syntax\Rule;
 
 use PHPUnit\Framework\TestCase;
-use PrinsFrank\Transliteration\Enum\SpecialTag;
+use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
-use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
-use PrinsFrank\Transliteration\Rule\Components\Conversion;
-use PrinsFrank\Transliteration\Rule\RuleList;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Character;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
+use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
+use PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion;
+use PrinsFrank\Transliteration\Syntax\Rule\RuleList;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\Rule\RuleList */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Syntax\Rule\RuleList */
 class RuleListTest extends TestCase
 {
     /** @covers ::__construct */
@@ -29,7 +29,7 @@ class RuleListTest extends TestCase
     public function testConstructThrowsExceptionWhenRulesIsOfInvalidType(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Param $rules should be an array of "PrinsFrank\Transliteration\FormalIdSyntax\SingleID|PrinsFrank\Transliteration\Rule\Components\Conversion|PrinsFrank\Transliteration\Rule\Components\VariableDefinition"');
+        $this->expectExceptionMessage('Param $rules should be an array of "PrinsFrank\Transliteration\Syntax\FormalId\SingleID|PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion|PrinsFrank\Transliteration\Syntax\Rule\Components\VariableDefinition"');
         /** @phpstan-ignore-next-line */
         new RuleList([null], null, null);
     }

@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit\FormalIdSyntax\Components;
+namespace PrinsFrank\Transliteration\Tests\Unit\Syntax\FormalId\Components;
 
 use PHPUnit\Framework\TestCase;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Character;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter */
 class FilterTest extends TestCase
 {
     /**

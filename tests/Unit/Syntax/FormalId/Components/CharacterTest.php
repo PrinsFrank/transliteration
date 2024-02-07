@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit\FormalIdSyntax\Components;
+namespace PrinsFrank\Transliteration\Tests\Unit\Syntax\FormalId\Components;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Character;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\FormalIdSyntax\Components\Character */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Syntax\FormalId\Components\Character */
 class CharacterTest extends TestCase
 {
     /** @covers ::__construct */

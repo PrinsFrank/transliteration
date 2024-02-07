@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\FormalIdSyntax;
+namespace PrinsFrank\Transliteration\Syntax\FormalId;
 
-use PrinsFrank\Transliteration\Enum\Literal;
+use PrinsFrank\Transliteration\Syntax\Enum\Literal;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
 
 /**
  * @internal

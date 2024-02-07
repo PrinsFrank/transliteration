@@ -5,12 +5,12 @@ namespace PrinsFrank\Transliteration\Tests\Unit\Transliterator;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
-use PrinsFrank\Transliteration\Enum\SpecialTag;
-use PrinsFrank\Transliteration\Enum\TransliterationDirection;
-use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
-use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
-use PrinsFrank\Transliteration\Rule\Components\Conversion;
-use PrinsFrank\Transliteration\Rule\RuleList;
+use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
+use PrinsFrank\Transliteration\Syntax\Enum\TransliterationDirection;
+use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
+use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
+use PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion;
+use PrinsFrank\Transliteration\Syntax\Rule\RuleList;
 use PrinsFrank\Transliteration\Transliterator\TypedTransliterator;
 use Transliterator;
 
