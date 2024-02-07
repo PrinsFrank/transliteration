@@ -16,7 +16,10 @@ final class Filter implements Stringable
     /** @var list<Character|array{0: Character, 1: Character}> */
     private array $set = [];
 
-    private bool $inverse = false;
+    public function __construct(
+        private readonly bool $inverse = false
+    ) {
+    }
 
     public function __toString(): string
     {
@@ -54,10 +57,17 @@ final class Filter implements Stringable
         return $this;
     }
 
-    public function inverse(): self
+    public function getInverse(): self
     {
-        $this->inverse = true;
+        $newInstance = new self($this->inverse === false);
+        foreach ($this->set as $rangeOrChar) {
+            if (is_array($rangeOrChar)) {
+                $newInstance->addRange($rangeOrChar[0], $rangeOrChar[1]);
+            } else {
+                $newInstance->addChar($rangeOrChar);
+            }
+        }
 
-        return $this;
+        return $newInstance;
     }
 }

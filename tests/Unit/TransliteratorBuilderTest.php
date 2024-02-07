@@ -307,6 +307,38 @@ class TransliteratorBuilderTest extends TestCase
     }
 
     /**
+     * @covers ::remove
+     * @covers ::getConversions
+     */
+    public function testRemove(): void
+    {
+        static::assertEquals(
+            [
+                new SingleID(new BasicID(SpecialTag::Remove), (new Filter())->addChar(new Character('a')))
+            ],
+            (new TransliteratorBuilder())
+                ->remove((new Filter())->addChar(new Character('a')))
+                ->getConversions()
+        );
+    }
+
+    /**
+     * @covers ::keep
+     * @covers ::getConversions
+     */
+    public function testKeep(): void
+    {
+        static::assertEquals(
+            [
+                new SingleID(new BasicID(SpecialTag::Remove), (new Filter())->addChar(new Character('a')))
+            ],
+            (new TransliteratorBuilder())
+                ->keep((new Filter(true))->addChar(new Character('a')))
+                ->getConversions()
+        );
+    }
+
+    /**
      * @covers ::replace
      * @covers ::getConversions
      */

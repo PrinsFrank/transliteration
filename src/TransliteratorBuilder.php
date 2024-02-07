@@ -135,7 +135,7 @@ class TransliteratorBuilder
 
     public function keep(Filter $filter): static
     {
-        return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter->inverse()));
+        return $this->addSingleID(new SingleID(new BasicID(SpecialTag::Remove), $filter->getInverse()));
     }
 
     /**
