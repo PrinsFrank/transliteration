@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Exception;
 
+/** @api */
 class UnableToCreateTransliteratorException extends TransliterationException
 {
     public function __construct(string $message, ?string $id)

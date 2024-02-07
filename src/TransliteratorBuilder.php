@@ -18,18 +18,17 @@ use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
 use PrinsFrank\Transliteration\Rule\RuleList;
+use PrinsFrank\Transliteration\Transliterator\TypedTransliterator;
 use Transliterator;
 
 class TransliteratorBuilder
 {
     /** @var list<SingleID|Conversion|VariableDefinition> */
-    private array $conversions = [];
+    protected array $conversions = [];
 
-    public function __construct(
-        private TransliterationDirection $direction = TransliterationDirection::FORWARD,
-        private Filter|null $globalFilter = null,
-    ) {
-    }
+    protected TransliterationDirection $direction = TransliterationDirection::FORWARD;
+
+    protected Filter|null $globalFilter = null;
 
     public function setDirection(TransliterationDirection $direction): static
     {
@@ -225,7 +224,7 @@ class TransliteratorBuilder
     }
 
     /** @phpstan-assert-if-false list<SingleID> $this->conversions */
-    private function containsRuleSyntax(): bool
+    protected function containsRuleSyntax(): bool
     {
         foreach ($this->conversions as $conversion) {
             if ($conversion instanceof SingleID === false) {

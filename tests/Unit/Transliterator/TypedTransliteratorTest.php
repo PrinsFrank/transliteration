@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration\Tests\Unit;
+namespace PrinsFrank\Transliteration\Tests\Unit\Transliterator;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
@@ -11,10 +11,10 @@ use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\RuleList;
-use PrinsFrank\Transliteration\TypedTransliterator;
+use PrinsFrank\Transliteration\Transliterator\TypedTransliterator;
 use Transliterator;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\TypedTransliterator */
+/** @coversDefaultClass \PrinsFrank\Transliteration\Transliterator\TypedTransliterator */
 class TypedTransliteratorTest extends TestCase
 {
     /** @covers ::create */

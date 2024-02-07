@@ -19,27 +19,15 @@ use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
 use PrinsFrank\Transliteration\Rule\RuleList;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
-use PrinsFrank\Transliteration\TypedTransliterator;
+use PrinsFrank\Transliteration\Transliterator\TypedTransliterator;
 
 /** @coversDefaultClass \PrinsFrank\Transliteration\TransliteratorBuilder */
 class TransliteratorBuilderTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::getDirection
-     */
+    /** @covers ::getDirection */
     public function testGetDirectionWithDefault(): void
     {
         static::assertSame(TransliterationDirection::FORWARD, (new TransliteratorBuilder())->getDirection());
-    }
-
-    /**
-     * @covers ::__construct
-     * @covers ::getDirection
-     */
-    public function testGetDirectionWithOverride(): void
-    {
-        static::assertSame(TransliterationDirection::REVERSE, (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->getDirection());
     }
 
     /**
@@ -54,24 +42,10 @@ class TransliteratorBuilderTest extends TestCase
         );
     }
 
-    /**
-     * @covers ::__construct
-     * @covers ::getGlobalFilter
-     */
+    /** @covers ::getGlobalFilter */
     public function testGetGlobalFilterWithNull(): void
     {
         static::assertNull((new TransliteratorBuilder())->getGlobalFilter());
-        static::assertNull((new TransliteratorBuilder(globalFilter: null))->getGlobalFilter());
-    }
-
-    /**
-     * @covers ::__construct
-     * @covers ::getGlobalFilter
-     */
-    public function testGetGlobalFilterFromConstructorArgument(): void
-    {
-        $globalFilter = new Filter();
-        static::assertSame($globalFilter, (new TransliteratorBuilder(globalFilter: $globalFilter))->getGlobalFilter());
     }
 
     /**
@@ -82,7 +56,6 @@ class TransliteratorBuilderTest extends TestCase
     {
         $globalFilter = new Filter();
         static::assertSame($globalFilter, (new TransliteratorBuilder())->setGlobalFilter($globalFilter)->getGlobalFilter());
-        static::assertNull((new TransliteratorBuilder(globalFilter: $globalFilter))->setGlobalFilter(null)->getGlobalFilter());
     }
 
     /**
@@ -406,7 +379,7 @@ class TransliteratorBuilderTest extends TestCase
         );
         static::assertEquals(
             TypedTransliterator::create(new RuleList([new Conversion('a', 'b')]), TransliterationDirection::REVERSE),
-            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addConversion(new Conversion('a', 'b'))->getTransliterator()
+            (new TransliteratorBuilder())->setDirection(TransliterationDirection::REVERSE)->addConversion(new Conversion('a', 'b'))->getTransliterator()
         );
     }
 
@@ -422,7 +395,7 @@ class TransliteratorBuilderTest extends TestCase
         );
         static::assertEquals(
             TypedTransliterator::create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), TransliterationDirection::REVERSE),
-            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->getTransliterator()
+            (new TransliteratorBuilder())->setDirection(TransliterationDirection::REVERSE)->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->getTransliterator()
         );
     }
 
@@ -438,7 +411,7 @@ class TransliteratorBuilderTest extends TestCase
         );
         static::assertEquals(
             TypedTransliterator::create(new CompoundID([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), new SingleID(new BasicID(SpecialTag::Hex))]), TransliterationDirection::REVERSE),
-            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->getTransliterator()
+            (new TransliteratorBuilder())->setDirection(TransliterationDirection::REVERSE)->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->getTransliterator()
         );
     }
 
@@ -462,7 +435,7 @@ class TransliteratorBuilderTest extends TestCase
         );
         static::assertEquals(
             'a',
-            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addConversion(new Conversion('a', 'b'))->transliterate('a')
+            (new TransliteratorBuilder())->setDirection(TransliterationDirection::REVERSE)->addConversion(new Conversion('a', 'b'))->transliterate('a')
         );
     }
 
@@ -478,7 +451,7 @@ class TransliteratorBuilderTest extends TestCase
         );
         static::assertEquals(
             'ア',
-            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->transliterate('ア')
+            (new TransliteratorBuilder())->setDirection(TransliterationDirection::REVERSE)->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->transliterate('ア')
         );
     }
 
@@ -494,7 +467,7 @@ class TransliteratorBuilderTest extends TestCase
         );
         static::assertEquals(
             'b',
-            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->transliterate('\u0062')
+            (new TransliteratorBuilder())->setDirection(TransliterationDirection::REVERSE)->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->transliterate('\u0062')
         );
     }
 }

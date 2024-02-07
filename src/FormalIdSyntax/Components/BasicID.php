@@ -13,6 +13,7 @@ use PrinsFrank\Transliteration\Enum\Variant;
 use Stringable;
 
 /**
+ * @api
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#basic-ids
  */
 final class BasicID implements Stringable

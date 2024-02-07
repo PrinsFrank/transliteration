@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PrinsFrank\Transliteration;
+namespace PrinsFrank\Transliteration\Transliterator;
 
 use PrinsFrank\Transliteration\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Exception\ListIDsUnavailableException;
@@ -11,6 +11,7 @@ use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\RuleList;
 use Transliterator;
 
+/** @internal */
 final class TypedTransliterator
 {
     /** @throws UnableToCreateTransliteratorException */
