@@ -39,7 +39,9 @@ class TypedTransliterator implements TypedTransliteratorInterface
     ): string {
         $transliteratedString = transliterator_transliterate($this->create($id, $direction), $string);
         if ($transliteratedString === false) {
+            // @codeCoverageIgnoreStart
             throw new UnableToCreateTransliteratorException(intl_get_error_message(), $id->__toString());
+            // @codeCoverageIgnoreEnd
         }
 
         return $transliteratedString;

@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace PrinsFrank\Transliteration\Tests\Unit\Rule;
 
 use PHPUnit\Framework\TestCase;
+use PrinsFrank\Transliteration\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
+use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\RuleList;
 
@@ -37,6 +40,13 @@ class RuleListTest extends TestCase
      */
     public function testToString(): void
     {
+        static::assertSame(
+            <<<EOD
+            ::Any;
+
+            EOD,
+            (new RuleList([new SingleID(new BasicID(SpecialTag::Any))]))->__toString()
+        );
         static::assertSame(
             <<<EOD
             foo>bar;
