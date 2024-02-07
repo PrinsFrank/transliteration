@@ -28,7 +28,8 @@ class TransliteratorBuilder
     public function __construct(
         private TransliterationDirection $direction = TransliterationDirection::FORWARD,
         private Filter|null $globalFilter = null,
-    ) { }
+    ) {
+    }
 
     public function setDirection(TransliterationDirection $direction): static
     {

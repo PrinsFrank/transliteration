@@ -26,29 +26,6 @@ class TransliteratorBuilderTest extends TestCase
 {
     /**
      * @covers ::__construct
-     * @covers ::getTypedTransliterator
-     */
-    public function testGetTypedTransliteratorWithDefault(): void
-    {
-        (new TransliteratorBuilder())->getTypedTransliterator();
-        $this->addToAssertionCount(1);
-    }
-
-    /**
-     * @covers ::__construct
-     * @covers ::getTypedTransliterator
-     */
-    public function testGetTypedTransliteratorWithCustomTypedTransliterator(): void
-    {
-        $typedTransliterator = new TypedTransliterator();
-        static::assertSame(
-            $typedTransliterator,
-            (new TransliteratorBuilder($typedTransliterator))->getTypedTransliterator()
-        );
-    }
-
-    /**
-     * @covers ::__construct
      * @covers ::getDirection
      */
     public function testGetDirectionWithDefault(): void
@@ -424,11 +401,11 @@ class TransliteratorBuilderTest extends TestCase
     public function testGetTransliteratorWithRuleSyntax(): void
     {
         static::assertEquals(
-            (new TypedTransliterator())->create(new RuleList([new Conversion('a', 'b')])),
+            TypedTransliterator::create(new RuleList([new Conversion('a', 'b')])),
             (new TransliteratorBuilder())->addConversion(new Conversion('a', 'b'))->getTransliterator()
         );
         static::assertEquals(
-            (new TypedTransliterator())->create(new RuleList([new Conversion('a', 'b')]), TransliterationDirection::REVERSE),
+            TypedTransliterator::create(new RuleList([new Conversion('a', 'b')]), TransliterationDirection::REVERSE),
             (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addConversion(new Conversion('a', 'b'))->getTransliterator()
         );
     }
@@ -440,11 +417,11 @@ class TransliteratorBuilderTest extends TestCase
     public function testGetTransliteratorWithSingleID(): void
     {
         static::assertEquals(
-            (new TypedTransliterator())->create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))),
+            TypedTransliterator::create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))),
             (new TransliteratorBuilder())->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->getTransliterator()
         );
         static::assertEquals(
-            (new TypedTransliterator())->create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), TransliterationDirection::REVERSE),
+            TypedTransliterator::create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), TransliterationDirection::REVERSE),
             (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->getTransliterator()
         );
     }
@@ -456,11 +433,11 @@ class TransliteratorBuilderTest extends TestCase
     public function testGetTransliteratorWithCompoundID(): void
     {
         static::assertEquals(
-            (new TypedTransliterator())->create(new CompoundID([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), new SingleID(new BasicID(SpecialTag::Hex))])),
+            TypedTransliterator::create(new CompoundID([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), new SingleID(new BasicID(SpecialTag::Hex))])),
             (new TransliteratorBuilder())->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->getTransliterator()
         );
         static::assertEquals(
-            (new TypedTransliterator())->create(new CompoundID([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), new SingleID(new BasicID(SpecialTag::Hex))]), TransliterationDirection::REVERSE),
+            TypedTransliterator::create(new CompoundID([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), new SingleID(new BasicID(SpecialTag::Hex))]), TransliterationDirection::REVERSE),
             (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->getTransliterator()
         );
     }

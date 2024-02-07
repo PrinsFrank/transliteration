@@ -22,31 +22,31 @@ class TypedTransliteratorTest extends TestCase
     {
         static::assertEquals(
             Transliterator::create('Any-Latin;'),
-            (new TypedTransliterator())->create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))
+            TypedTransliterator::create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))
         );
         static::assertEquals(
             Transliterator::create('Any-Latin;', Transliterator::REVERSE),
-            (new TypedTransliterator())->create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), TransliterationDirection::REVERSE)
+            TypedTransliterator::create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), TransliterationDirection::REVERSE)
         );
         static::assertEquals(
             Transliterator::createFromRules('::Any-Latin;'),
-            (new TypedTransliterator())->create(new RuleList([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))]))
+            TypedTransliterator::create(new RuleList([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))]))
         );
         static::assertEquals(
             Transliterator::createFromRules('::Any-Latin;', Transliterator::REVERSE),
-            (new TypedTransliterator())->create(new RuleList([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))]), TransliterationDirection::REVERSE)
+            TypedTransliterator::create(new RuleList([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))]), TransliterationDirection::REVERSE)
         );
     }
 
     /** @covers ::transliterate */
     public function testTransliterate(): void
     {
-        static::assertSame('bfoorbfoor', (new TypedTransliterator())->transliterate('foobar', new RuleList([new Conversion('foo', 'bar'), new SingleID(new BasicID(SpecialTag::Null)), new Conversion('a', 'foo')])));
+        static::assertSame('bfoorbfoor', TypedTransliterator::transliterate('foobar', new RuleList([new Conversion('foo', 'bar'), new SingleID(new BasicID(SpecialTag::Null)), new Conversion('a', 'foo')])));
     }
 
     /** @covers ::listIDs */
     public function testListIDs(): void
     {
-        static::assertNotEmpty((new TypedTransliterator())->listIDs());
+        static::assertNotEmpty(TypedTransliterator::listIDs());
     }
 }
