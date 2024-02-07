@@ -16,7 +16,10 @@ use PrinsFrank\Transliteration\TransliteratorBuilder;
 /** @coversDefaultClass \PrinsFrank\Transliteration\ConversionSet\ConvertToScriptLanguage */
 class ConvertToScriptLanguageTest extends TestCase
 {
-    /** @covers ::apply */
+    /**
+     * @covers ::__construct
+     * @covers ::apply
+     */
     public function testApply(): void
     {
         static::assertEquals(
