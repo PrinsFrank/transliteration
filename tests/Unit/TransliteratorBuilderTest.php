@@ -5,6 +5,7 @@ namespace PrinsFrank\Transliteration\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
+use PrinsFrank\Transliteration\ConversionSet\Replace;
 use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Syntax\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
@@ -140,6 +141,18 @@ class TransliteratorBuilderTest extends TestCase
                 ->addVariableDefinition($variableDefinition2)
                 ->getConversions()
         );
+    }
+
+    /** @covers ::applyConversionSet */
+    public function testApplyConversionSet(): void
+    {
+        static::assertSame('bar', (new TransliteratorBuilder())->applyConversionSet(new Replace('foo', 'bar'))->transliterate('foo'));
+    }
+
+    /** @covers ::applyConversionSets */
+    public function testApplyConversionSets(): void
+    {
+        static::assertSame('bar', (new TransliteratorBuilder())->applyConversionSets([new Replace('foo', 'bar')])->transliterate('foo'));
     }
 
     /** @covers ::getTransliterator */

@@ -15,7 +15,10 @@ use PrinsFrank\Transliteration\TransliteratorBuilder;
 /** @coversDefaultClass \PrinsFrank\Transliteration\ConversionSet\Remove */
 class RemoveTest extends TestCase
 {
-    /** @covers ::apply */
+    /**
+     * @covers ::__construct
+     * @covers ::apply
+     */
     public function testApply(): void
     {
         static::assertEquals(
