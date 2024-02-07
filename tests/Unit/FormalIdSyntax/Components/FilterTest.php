@@ -44,7 +44,10 @@ class FilterTest extends TestCase
         static::assertSame('', (new Filter(true))->__toString());
     }
 
-    /** @covers ::getInverse */
+    /**
+     * @covers ::__construct
+     * @covers ::getInverse
+     */
     public function testGetInverse(): void
     {
         static::assertEquals(new Filter(true), (new Filter())->getInverse());

@@ -13,9 +13,11 @@ use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
+use PrinsFrank\Transliteration\FormalIdSyntax\CompoundID;
 use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
+use PrinsFrank\Transliteration\Rule\RuleList;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 use PrinsFrank\Transliteration\TypedTransliterator;
 
@@ -415,11 +417,107 @@ class TransliteratorBuilderTest extends TestCase
         (new TransliteratorBuilder())->getTransliterator();
     }
 
+    /**
+     * @covers ::getTransliterator
+     * @covers ::containsRuleSyntax
+     */
+    public function testGetTransliteratorWithRuleSyntax(): void
+    {
+        static::assertEquals(
+            (new TypedTransliterator())->create(new RuleList([new Conversion('a', 'b')])),
+            (new TransliteratorBuilder())->addConversion(new Conversion('a', 'b'))->getTransliterator()
+        );
+        static::assertEquals(
+            (new TypedTransliterator())->create(new RuleList([new Conversion('a', 'b')]), TransliterationDirection::REVERSE),
+            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addConversion(new Conversion('a', 'b'))->getTransliterator()
+        );
+    }
+
+    /**
+     * @covers ::getTransliterator
+     * @covers ::containsRuleSyntax
+     */
+    public function testGetTransliteratorWithSingleID(): void
+    {
+        static::assertEquals(
+            (new TypedTransliterator())->create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any))),
+            (new TransliteratorBuilder())->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->getTransliterator()
+        );
+        static::assertEquals(
+            (new TypedTransliterator())->create(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), TransliterationDirection::REVERSE),
+            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->getTransliterator()
+        );
+    }
+
+    /**
+     * @covers ::getTransliterator
+     * @covers ::containsRuleSyntax
+     */
+    public function testGetTransliteratorWithCompoundID(): void
+    {
+        static::assertEquals(
+            (new TypedTransliterator())->create(new CompoundID([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), new SingleID(new BasicID(SpecialTag::Hex))])),
+            (new TransliteratorBuilder())->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->getTransliterator()
+        );
+        static::assertEquals(
+            (new TypedTransliterator())->create(new CompoundID([new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)), new SingleID(new BasicID(SpecialTag::Hex))]), TransliterationDirection::REVERSE),
+            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->getTransliterator()
+        );
+    }
+
     /** @covers ::transliterate */
     public function testTransliterateThrowsExceptionWhenNoConversions(): void
     {
         $this->expectException(UnableToCreateTransliteratorException::class);
         $this->expectExceptionMessage('There are no conversions');
         (new TransliteratorBuilder())->transliterate('');
+    }
+
+    /**
+     * @covers ::transliterate
+     * @covers ::containsRuleSyntax
+     */
+    public function testTransliterateWithRuleSyntax(): void
+    {
+        static::assertEquals(
+            'b',
+            (new TransliteratorBuilder())->addConversion(new Conversion('a', 'b'))->transliterate('a')
+        );
+        static::assertEquals(
+            'a',
+            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addConversion(new Conversion('a', 'b'))->transliterate('a')
+        );
+    }
+
+    /**
+     * @covers ::transliterate
+     * @covers ::containsRuleSyntax
+     */
+    public function testTransliterateWithSingleID(): void
+    {
+        static::assertEquals(
+            'a',
+            (new TransliteratorBuilder())->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->transliterate('ア')
+        );
+        static::assertEquals(
+            'ア',
+            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->transliterate('ア')
+        );
+    }
+
+    /**
+     * @covers ::transliterate
+     * @covers ::containsRuleSyntax
+     */
+    public function testTransliterateWithCompoundID(): void
+    {
+        static::assertEquals(
+            '\u0061',
+            (new TransliteratorBuilder())->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->transliterate('a')
+        );
+        static::assertEquals(
+            'b',
+            (new TransliteratorBuilder(direction: TransliterationDirection::REVERSE))->addSingleID(new SingleID(new BasicID(ScriptAlias::Latin, SpecialTag::Any)))->addSingleID(new SingleID(new BasicID(SpecialTag::Hex)))->transliterate('\u0062')
+        );
     }
 }
