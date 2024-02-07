@@ -11,6 +11,7 @@ use Stringable;
 
 /**
  * @api
+ *
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#conversion-rules
  */
 final class Conversion implements Stringable

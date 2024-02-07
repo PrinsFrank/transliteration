@@ -9,6 +9,7 @@ use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 
 /**
  * @internal
+ *
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax
  */
 final class CompoundID implements ID

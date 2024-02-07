@@ -13,6 +13,7 @@ use Stringable;
 
 /**
  * @internal
+ *
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#rule-syntax
  */
 final class RuleList implements Stringable

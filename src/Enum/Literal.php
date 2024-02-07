@@ -5,6 +5,7 @@ namespace PrinsFrank\Transliteration\Enum;
 
 /**
  * @api
+ *
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax
  */
 enum Literal: string

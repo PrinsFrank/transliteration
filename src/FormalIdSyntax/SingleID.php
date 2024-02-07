@@ -8,6 +8,7 @@ use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 
 /**
  * @api
+ *
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax
  */
 final class SingleID implements ID
