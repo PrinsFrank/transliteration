@@ -11,10 +11,10 @@ use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\RuleList;
 use Transliterator;
 
-class TypedTransliterator implements TypedTransliteratorInterface
+final class TypedTransliterator
 {
     /** @throws UnableToCreateTransliteratorException */
-    public function create(
+    public static function create(
         SingleID|CompoundID|RuleList $id,
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): Transliterator {
@@ -32,12 +32,12 @@ class TypedTransliterator implements TypedTransliteratorInterface
     }
 
     /** @throws UnableToCreateTransliteratorException */
-    public function transliterate(
+    public static function transliterate(
         string $string,
         SingleID|CompoundID|RuleList $id,
         TransliterationDirection $direction = TransliterationDirection::FORWARD
     ): string {
-        $transliteratedString = transliterator_transliterate($this->create($id, $direction), $string);
+        $transliteratedString = transliterator_transliterate(self::create($id, $direction), $string);
         if ($transliteratedString === false) {
             // @codeCoverageIgnoreStart
             throw new UnableToCreateTransliteratorException(intl_get_error_message(), $id->__toString());
@@ -51,7 +51,7 @@ class TypedTransliterator implements TypedTransliteratorInterface
      * @throws ListIDsUnavailableException
      * @return list<string>
      */
-    public function listIDs(): array
+    public static function listIDs(): array
     {
         $ids = Transliterator::listIDs();
         if ($ids === false) {
