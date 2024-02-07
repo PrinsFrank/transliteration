@@ -29,4 +29,6 @@ Or for development only;
 
 > :mortar_board: **Transliteration** is _to represent or spell in the characters of another alphabet_.
 
-But Transliteration in PHP is so much more powerful than that. It's a shame that it is [barely documented](https://www.php.net/manual/en/transliterator.create.php) and that you'll have to look in the [ICU documentation](https://unicode-org.github.io/icu/userguide/transforms/general/) for a full feature list. 
+But Transliteration in PHP is so much more powerful than that. It's a shame that it is [barely documented](https://www.php.net/manual/en/transliterator.create.php) and that you'll have to look in the [ICU documentation](https://unicode-org.github.io/icu/userguide/transforms/general/) for a full feature list.
+
+But worst of all: the arguments for transliterator creation are strings. This package provides a full strictly-typed wrapper to create transliterators. It also provides some ready-to-go ConversionSets to get you up and running in no time!
