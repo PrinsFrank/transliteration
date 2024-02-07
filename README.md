@@ -24,3 +24,9 @@ To start right away, run the following command in your composer project;
 Or for development only;
 
 ```composer require prinsfrank/transliteration --dev```
+
+## Overview
+
+> :mortar_board: **Transliteration** is _to represent or spell in the characters of another alphabet_.
+
+But Transliteration in PHP is so much more powerful than that. It's a shame that it is [barely documented](https://www.php.net/manual/en/transliterator.create.php) and that you'll have to look in the [ICU documentation](https://unicode-org.github.io/icu/userguide/transforms/general/) for a full feature list. 
