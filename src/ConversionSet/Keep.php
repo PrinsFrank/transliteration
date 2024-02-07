@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\ConversionSet;
 
+use PrinsFrank\Transliteration\ConversionSet;
 use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
 use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
@@ -10,7 +11,7 @@ use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
 /** @api */
-class Keep implements ConversionSet
+final class Keep implements ConversionSet
 {
     public function __construct(
         private readonly Filter $filter,

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration;
 
-use PrinsFrank\Transliteration\ConversionSet\ConversionSet;
 use PrinsFrank\Transliteration\Syntax\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;

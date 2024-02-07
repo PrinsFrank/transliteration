@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\ConversionSet;
 
+use PrinsFrank\Transliteration\ConversionSet;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
 /** @api */
-class IPAToEnglishApproximation implements ConversionSet
+final class IPAToEnglishApproximation implements ConversionSet
 {
     public function apply(TransliteratorBuilder $transliteratorBuilder): void
     {

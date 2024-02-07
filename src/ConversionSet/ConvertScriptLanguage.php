@@ -6,6 +6,7 @@ namespace PrinsFrank\Transliteration\ConversionSet;
 use PrinsFrank\Standards\LanguageTag\LanguageTag;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
 use PrinsFrank\Standards\Scripts\ScriptName;
+use PrinsFrank\Transliteration\ConversionSet;
 use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Syntax\Enum\Variant;
 use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
@@ -14,7 +15,7 @@ use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
 /** @api */
-class ConvertScriptLanguage implements ConversionSet
+final class ConvertScriptLanguage implements ConversionSet
 {
     public function __construct(
         private readonly ScriptName|ScriptAlias|LanguageTag|SpecialTag $source,
