@@ -4,6 +4,10 @@ declare(strict_types=1);
 namespace PrinsFrank\Transliteration\Tests\Feature;
 
 use PHPUnit\Framework\TestCase;
+use PrinsFrank\Transliteration\ConversionSet\IPAToEnglishApproximation;
+use PrinsFrank\Transliteration\ConversionSet\Keep;
+use PrinsFrank\Transliteration\ConversionSet\Replace;
+use PrinsFrank\Transliteration\ConversionSet\ToASCII;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
 use PrinsFrank\Transliteration\Syntax\FormalId\Components\Character;
@@ -22,12 +26,14 @@ class TransliteratorBuilderTest extends TestCase
     public function testTransliteratorBuilderWithScriptNamesInNativeLanguages(): void
     {
         $transliterator = (new TransliteratorBuilder())
-            ->toASCII()
-            ->keep(
-                (new Filter())
-                    ->addRange(new Character('a'), new Character('z'))
-                    ->addRange(new Character('A'), new Character('Z'))
-                    ->addChar(new Character(' '))
+            ->applyConversionSet(new ToASCII())
+            ->applyConversionSet(
+                new Keep(
+                    (new Filter())
+                        ->addRange(new Character('a'), new Character('z'))
+                        ->addRange(new Character('A'), new Character('Z'))
+                        ->addChar(new Character(' '))
+                )
             )
         ;
 
@@ -50,16 +56,19 @@ class TransliteratorBuilderTest extends TestCase
     public function testTransliteratorBuilderWithScriptNamesInNativeLanguagesWithReplacements(): void
     {
         $transliterator = (new TransliteratorBuilder())
-            ->toASCII()
-            ->replace('-', ' ')
-            ->IPAToEnglishApproximation()
-            ->keep(
-                (new Filter())
-                    ->addRange(new Character('a'), new Character('z'))
-                    ->addRange(new Character('A'), new Character('Z'))
-                    ->addChar(new Character(' '))
-            )
-        ;
+            ->applyConversionSets(
+                [
+                    new ToASCII(),
+                    new Replace('-', ' '),
+                    new IPAToEnglishApproximation(),
+                    new Keep(
+                        (new Filter())
+                            ->addRange(new Character('a'), new Character('z'))
+                            ->addRange(new Character('A'), new Character('Z'))
+                            ->addChar(new Character(' '))
+                    )
+                ]
+            );
 
         static::assertSame(
             'Naxi Geba naci guba Na Khi Ggo baw Nakhi Geba',
