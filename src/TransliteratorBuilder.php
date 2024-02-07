@@ -35,6 +35,11 @@ class TransliteratorBuilder
         $this->typedTransliterator = $typedTransliterator ?? new TypedTransliterator();
     }
 
+    public function getTypedTransliterator(): TypedTransliteratorInterface
+    {
+        return $this->typedTransliterator;
+    }
+
     public function setDirection(TransliterationDirection $direction): static
     {
         $this->direction = $direction;
@@ -42,11 +47,21 @@ class TransliteratorBuilder
         return $this;
     }
 
+    public function getDirection(): TransliterationDirection
+    {
+        return $this->direction;
+    }
+
     public function setGlobalFilter(Filter|null $globalFilter): static
     {
         $this->globalFilter = $globalFilter;
 
         return $this;
+    }
+
+    public function getGlobalFilter(): ?Filter
+    {
+        return $this->globalFilter;
     }
 
     public function addSingleID(SingleID $singleID): static
@@ -68,6 +83,12 @@ class TransliteratorBuilder
         $this->conversions[] = $variableDefinition;
 
         return $this;
+    }
+
+    /** @return list<SingleID|Conversion|VariableDefinition> */
+    public function getConversions(): array
+    {
+        return $this->conversions;
     }
 
     public function convertScriptLanguage(
@@ -177,7 +198,7 @@ class TransliteratorBuilder
     public function getTransliterator(): Transliterator
     {
         if ($this->conversions === []) {
-            throw new UnableToCreateTransliteratorException('There are no conversions', '');
+            throw new UnableToCreateTransliteratorException('There are no conversions', null);
         }
 
         if ($this->containsRuleSyntax() === true) {
@@ -198,7 +219,7 @@ class TransliteratorBuilder
     public function transliterate(string $string): string
     {
         if ($this->conversions === []) {
-            throw new UnableToCreateTransliteratorException('There are no conversions', '');
+            throw new UnableToCreateTransliteratorException('There are no conversions', null);
         }
 
         if ($this->containsRuleSyntax() === true) {
