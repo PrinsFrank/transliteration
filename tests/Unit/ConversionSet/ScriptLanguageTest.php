@@ -5,7 +5,7 @@ namespace PrinsFrank\Transliteration\Tests\Unit\ConversionSet;
 
 use PHPUnit\Framework\TestCase;
 use PrinsFrank\Standards\Scripts\ScriptAlias;
-use PrinsFrank\Transliteration\ConversionSet\ConvertScriptLanguage;
+use PrinsFrank\Transliteration\ConversionSet\ScriptLanguage;
 use PrinsFrank\Transliteration\Syntax\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Syntax\Enum\Variant;
 use PrinsFrank\Transliteration\Syntax\FormalId\Components\BasicID;
@@ -14,8 +14,8 @@ use PrinsFrank\Transliteration\Syntax\FormalId\Components\Filter;
 use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
-/** @coversDefaultClass \PrinsFrank\Transliteration\ConversionSet\ConvertScriptLanguage */
-class ConvertScriptLanguageTest extends TestCase
+/** @coversDefaultClass \PrinsFrank\Transliteration\ConversionSet\ScriptLanguage */
+class ScriptLanguageTest extends TestCase
 {
     /**
      * @covers ::__construct
@@ -28,7 +28,7 @@ class ConvertScriptLanguageTest extends TestCase
                 new SingleID(new BasicID(SpecialTag::Any, ScriptAlias::Latin))
             ],
             (new TransliteratorBuilder())
-                ->applyConversionSet(new ConvertScriptLanguage(ScriptAlias::Latin, SpecialTag::Any))
+                ->applyConversionSet(new ScriptLanguage(ScriptAlias::Latin, SpecialTag::Any))
                 ->getConversions()
         );
         static::assertEquals(
@@ -36,7 +36,7 @@ class ConvertScriptLanguageTest extends TestCase
                 new SingleID(new BasicID(SpecialTag::Any, ScriptAlias::Latin, Variant::Unicode))
             ],
             (new TransliteratorBuilder())
-                ->applyConversionSet(new ConvertScriptLanguage(ScriptAlias::Latin, SpecialTag::Any, Variant::Unicode))
+                ->applyConversionSet(new ScriptLanguage(ScriptAlias::Latin, SpecialTag::Any, Variant::Unicode))
                 ->getConversions()
         );
         static::assertEquals(
@@ -44,7 +44,7 @@ class ConvertScriptLanguageTest extends TestCase
                 new SingleID(new BasicID(SpecialTag::Any, ScriptAlias::Latin, Variant::Unicode), (new Filter())->addChar(new Character('a')))
             ],
             (new TransliteratorBuilder())
-                ->applyConversionSet(new ConvertScriptLanguage(ScriptAlias::Latin, SpecialTag::Any, Variant::Unicode, (new Filter())->addChar(new Character('a'))))
+                ->applyConversionSet(new ScriptLanguage(ScriptAlias::Latin, SpecialTag::Any, Variant::Unicode, (new Filter())->addChar(new Character('a'))))
                 ->getConversions()
         );
     }

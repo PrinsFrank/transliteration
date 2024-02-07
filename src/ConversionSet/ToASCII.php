@@ -15,8 +15,8 @@ final class ToASCII implements ConversionSet
     {
         $transliteratorBuilder->applyConversionSets(
             [
-                new ConvertScriptLanguage(SpecialTag::Any, ScriptName::Latin),
-                new ConvertScriptLanguage(ScriptName::Latin, SpecialTag::ASCII)
+                new ScriptLanguage(SpecialTag::Any, ScriptName::Latin),
+                new ScriptLanguage(ScriptName::Latin, SpecialTag::ASCII)
             ]
         );
     }

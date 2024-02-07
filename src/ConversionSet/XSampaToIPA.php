@@ -13,7 +13,7 @@ final class XSampaToIPA implements ConversionSet
     public function apply(TransliteratorBuilder $transliteratorBuilder): void
     {
         $transliteratorBuilder->applyConversionSet(
-            new ConvertScriptLanguage(SpecialTag::XSampa, SpecialTag::IPA)
+            new ScriptLanguage(SpecialTag::XSampa, SpecialTag::IPA)
         );
     }
 }

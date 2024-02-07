@@ -15,9 +15,10 @@ use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
 use PrinsFrank\Transliteration\TransliteratorBuilder;
 
 /** @api */
-final class ConvertToScriptLanguage implements ConversionSet
+final class ScriptLanguage implements ConversionSet
 {
     public function __construct(
+        private readonly ScriptName|ScriptAlias|LanguageTag|SpecialTag $source,
         private readonly ScriptName|ScriptAlias|LanguageTag|SpecialTag $target,
         private readonly Variant|null $variant = null,
         private readonly Filter|null $filter = null,
@@ -26,6 +27,6 @@ final class ConvertToScriptLanguage implements ConversionSet
 
     public function apply(TransliteratorBuilder $transliteratorBuilder): void
     {
-        $transliteratorBuilder->addSingleID(new SingleID(new BasicID($this->target, null, $this->variant), $this->filter));
+        $transliteratorBuilder->addSingleID(new SingleID(new BasicID($this->target, $this->source, $this->variant), $this->filter));
     }
 }

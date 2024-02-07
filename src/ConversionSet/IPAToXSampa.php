@@ -13,7 +13,7 @@ final class IPAToXSampa implements ConversionSet
     public function apply(TransliteratorBuilder $transliteratorBuilder): void
     {
         $transliteratorBuilder->applyConversionSet(
-            new ConvertScriptLanguage(SpecialTag::IPA, SpecialTag::XSampa)
+            new ScriptLanguage(SpecialTag::IPA, SpecialTag::XSampa)
         );
     }
 }
