@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration\Enum;
 
+/** @api */
 enum Variant: string
 {
     /** Default for historical reasons */

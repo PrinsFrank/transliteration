@@ -5,6 +5,7 @@ namespace PrinsFrank\Transliteration\FormalIdSyntax;
 
 use Stringable;
 
+/** @internal */
 interface ID extends Stringable
 {
 }

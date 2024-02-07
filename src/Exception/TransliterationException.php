@@ -5,6 +5,7 @@ namespace PrinsFrank\Transliteration\Exception;
 
 use Exception;
 
+/** @api */
 abstract class TransliterationException extends Exception
 {
 }

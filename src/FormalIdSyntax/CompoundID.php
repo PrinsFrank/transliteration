@@ -7,7 +7,11 @@ use PrinsFrank\Transliteration\Enum\Literal;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 
-/** @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax */
+/**
+ * @internal
+ *
+ * @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax
+ */
 final class CompoundID implements ID
 {
     /**

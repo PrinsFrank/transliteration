@@ -7,6 +7,8 @@ use PrinsFrank\Transliteration\Enum\Literal;
 use Stringable;
 
 /**
+ * @api
+ *
  * @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax
  * "Finally, ‘filter’ is a valid UnicodeSet pattern."
  * @see https://unicode-org.github.io/icu/userguide/strings/unicodeset.html

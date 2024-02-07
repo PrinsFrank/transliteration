@@ -18,27 +18,18 @@ use PrinsFrank\Transliteration\FormalIdSyntax\SingleID;
 use PrinsFrank\Transliteration\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Rule\Components\VariableDefinition;
 use PrinsFrank\Transliteration\Rule\RuleList;
+use PrinsFrank\Transliteration\Transliterator\TypedTransliterator;
 use Transliterator;
 
+/** @api */
 class TransliteratorBuilder
 {
     /** @var list<SingleID|Conversion|VariableDefinition> */
-    private array $conversions = [];
+    protected array $conversions = [];
 
-    private readonly TypedTransliteratorInterface $typedTransliterator;
+    protected TransliterationDirection $direction = TransliterationDirection::FORWARD;
 
-    public function __construct(
-        TypedTransliteratorInterface|null $typedTransliterator = null,
-        private TransliterationDirection $direction = TransliterationDirection::FORWARD,
-        private Filter|null $globalFilter = null,
-    ) {
-        $this->typedTransliterator = $typedTransliterator ?? new TypedTransliterator();
-    }
-
-    public function getTypedTransliterator(): TypedTransliteratorInterface
-    {
-        return $this->typedTransliterator;
-    }
+    protected Filter|null $globalFilter = null;
 
     public function setDirection(TransliterationDirection $direction): static
     {
@@ -202,14 +193,14 @@ class TransliteratorBuilder
         }
 
         if ($this->containsRuleSyntax() === true) {
-            return $this->typedTransliterator->create(new RuleList($this->conversions, $this->globalFilter), $this->direction);
+            return TypedTransliterator::create(new RuleList($this->conversions, $this->globalFilter), $this->direction);
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
-            return $this->typedTransliterator->create($this->conversions[0], $this->direction);
+            return TypedTransliterator::create($this->conversions[0], $this->direction);
         }
 
-        return $this->typedTransliterator->create(new CompoundID($this->conversions, $this->globalFilter), $this->direction);
+        return TypedTransliterator::create(new CompoundID($this->conversions, $this->globalFilter), $this->direction);
     }
 
     /**
@@ -223,18 +214,18 @@ class TransliteratorBuilder
         }
 
         if ($this->containsRuleSyntax() === true) {
-            return $this->typedTransliterator->transliterate($string, new RuleList($this->conversions, $this->globalFilter), $this->direction);
+            return TypedTransliterator::transliterate($string, new RuleList($this->conversions, $this->globalFilter), $this->direction);
         }
 
         if ($this->globalFilter === null && count($this->conversions) === 1) {
-            return $this->typedTransliterator->transliterate($string, $this->conversions[0], $this->direction);
+            return TypedTransliterator::transliterate($string, $this->conversions[0], $this->direction);
         }
 
-        return $this->typedTransliterator->transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
+        return TypedTransliterator::transliterate($string, new CompoundID($this->conversions, $this->globalFilter), $this->direction);
     }
 
     /** @phpstan-assert-if-false list<SingleID> $this->conversions */
-    private function containsRuleSyntax(): bool
+    protected function containsRuleSyntax(): bool
     {
         foreach ($this->conversions as $conversion) {
             if ($conversion instanceof SingleID === false) {

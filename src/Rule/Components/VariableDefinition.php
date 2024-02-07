@@ -8,6 +8,7 @@ use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
 use Stringable;
 
+/** @api */
 final class VariableDefinition implements Stringable
 {
     /**

@@ -7,6 +7,7 @@ use PrinsFrank\Transliteration\Enum\Literal;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use Stringable;
 
+/** @api */
 final class Character implements Stringable
 {
     /**

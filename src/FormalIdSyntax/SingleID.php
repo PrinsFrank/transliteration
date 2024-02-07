@@ -6,7 +6,11 @@ namespace PrinsFrank\Transliteration\FormalIdSyntax;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
 
-/** @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax */
+/**
+ * @api
+ *
+ * @see https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax
+ */
 final class SingleID implements ID
 {
     public function __construct(
