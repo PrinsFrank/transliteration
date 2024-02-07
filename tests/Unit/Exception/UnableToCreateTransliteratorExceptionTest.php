@@ -16,4 +16,12 @@ class UnableToCreateTransliteratorExceptionTest extends TestCase
         $this->expectExceptionMessage('Foo with id "Bar"');
         throw new UnableToCreateTransliteratorException('Foo', 'Bar');
     }
+
+    /** @covers ::__construct */
+    public function testConstructWithNulLID(): void
+    {
+        $this->expectException(UnableToCreateTransliteratorException::class);
+        $this->expectExceptionMessage('Foo');
+        throw new UnableToCreateTransliteratorException('Foo', null);
+    }
 }

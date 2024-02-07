@@ -5,8 +5,14 @@ namespace PrinsFrank\Transliteration\Exception;
 
 class UnableToCreateTransliteratorException extends TransliterationException
 {
-    public function __construct(string $message, string $id)
+    public function __construct(string $message, ?string $id)
     {
+        if ($id === null) {
+            parent::__construct($message);
+
+            return;
+        }
+
         parent::__construct($message . ' with id "' . $id . '"');
     }
 }

@@ -9,6 +9,7 @@ use PrinsFrank\Standards\Scripts\ScriptName;
 use PrinsFrank\Transliteration\Enum\SpecialTag;
 use PrinsFrank\Transliteration\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Enum\Variant;
+use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\BasicID;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Character;
 use PrinsFrank\Transliteration\FormalIdSyntax\Components\Filter;
@@ -303,5 +304,90 @@ class TransliteratorBuilderTest extends TestCase
                 ->toIPA()
                 ->getConversions()
         );
+    }
+
+    /**
+     * @covers ::replace
+     * @covers ::getConversions
+     */
+    public function testReplace(): void
+    {
+        static::assertEquals(
+            [
+                new Conversion('a', 'b')
+            ],
+            (new TransliteratorBuilder())
+                ->replace('a', 'b')
+                ->getConversions()
+        );
+    }
+
+    /**
+     * @covers ::IPAToEnglishApproximation
+     * @covers ::getConversions
+     */
+    public function testIPAToEnglishApproximation(): void
+    {
+        static::assertEquals(
+            [
+                new Conversion('dʒ', 'g'),
+                new Conversion('kʰ', 'c'),
+                new Conversion('kʷ', 'qu'),
+                new Conversion('kᶣ', 'cu'),
+                new Conversion('ɫ', 'll'),
+                new Conversion('ŋ', 'n'),
+                new Conversion('Ŋ', 'N'),
+                new Conversion('ɲ', 'n'),
+                new Conversion('Ɲ', 'N'),
+                new Conversion('pʰ', 'p'),
+                new Conversion('ʃ', 'sh'),
+                new Conversion('Ʃ', 'SH'),
+                new Conversion('tʰ', 't'),
+                new Conversion('tʃ', 'ch'),
+                new Conversion('aː', 'a'),
+                new Conversion('Aː', 'A'),
+                new Conversion('ɛ', 'e'),
+                new Conversion('Ɛ', 'E'),
+                new Conversion('eː', 'a'),
+                new Conversion('Eː', 'A'),
+                new Conversion('ɪ', 'i'),
+                new Conversion('Ɪ', 'I'),
+                new Conversion('iː', 'i'),
+                new Conversion('Iː', 'I'),
+                new Conversion('ɔ', 'o'),
+                new Conversion('Ɔ', 'O'),
+                new Conversion('oː', 'aw'),
+                new Conversion('ʊ', 'u'),
+                new Conversion('Ʊ', 'U'),
+                new Conversion('ʌ', 'u'),
+                new Conversion('Ʌ', 'U'),
+                new Conversion('uː', 'u'),
+                new Conversion('yː', 'u'),
+                new Conversion('ae̯', 'igh'),
+                new Conversion('oe̯', 'oy'),
+                new Conversion('au̯', 'ow'),
+                new Conversion('ei̯', 'ay'),
+                new Conversion('ui̯', 'ui'),
+            ],
+            (new TransliteratorBuilder())
+                ->IPAToEnglishApproximation()
+                ->getConversions()
+        );
+    }
+
+    /** @covers ::getTransliterator */
+    public function testGetTransliteratorThrowsExceptionWhenNoConversions(): void
+    {
+        $this->expectException(UnableToCreateTransliteratorException::class);
+        $this->expectExceptionMessage('There are no conversions');
+        (new TransliteratorBuilder())->getTransliterator();
+    }
+
+    /** @covers ::transliterate */
+    public function testTransliterateThrowsExceptionWhenNoConversions(): void
+    {
+        $this->expectException(UnableToCreateTransliteratorException::class);
+        $this->expectExceptionMessage('There are no conversions');
+        (new TransliteratorBuilder())->transliterate('');
     }
 }

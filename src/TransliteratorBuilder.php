@@ -198,7 +198,7 @@ class TransliteratorBuilder
     public function getTransliterator(): Transliterator
     {
         if ($this->conversions === []) {
-            throw new UnableToCreateTransliteratorException('There are no conversions', '');
+            throw new UnableToCreateTransliteratorException('There are no conversions', null);
         }
 
         if ($this->containsRuleSyntax() === true) {
@@ -219,7 +219,7 @@ class TransliteratorBuilder
     public function transliterate(string $string): string
     {
         if ($this->conversions === []) {
-            throw new UnableToCreateTransliteratorException('There are no conversions', '');
+            throw new UnableToCreateTransliteratorException('There are no conversions', null);
         }
 
         if ($this->containsRuleSyntax() === true) {
