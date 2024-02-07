@@ -12,13 +12,12 @@ use PrinsFrank\Transliteration\TransliteratorBuilder;
 /** @coversDefaultClass \PrinsFrank\Transliteration\ConversionSet\ReplaceAll */
 class ReplaceAllTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
+    /** @covers ::__construct */
     public function testConstructThrowsExceptionOnEmptyArray(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('param $strings should be a non-empty array');
+        /** @phpstan-ignore-next-line */
         new ReplaceAll([], '');
     }
 
