@@ -109,7 +109,7 @@ Or calling the `applyConversionSets` method with an array of conversion sets;
     ])
 ```
 
-### Bundled conversion sets
+## Bundled conversion sets
 
 There are a bunch of conversion sets included in this package:
 
@@ -157,6 +157,80 @@ public function apply(TransliteratorBuilder $transliteratorBuilder): void
 ```
 
 If the ConversionSet needs any arguments, you can implement a constructor and use those arguments in the apply method. For a simple example of this, see the [Replace](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/Replace.php) ConversionSet.
+
+#### SingleID
+
+A SingleID is the most basic conversion available. It expects a BasicID and an optional filter. The arguments of the BasicID are self documenting; Either pass a ScriptName, ScriptAlias, Language or SpecialTag to the target (and optionally the source) to convert to (and from) scripts and languages or special tags;
+
+```php
+public function apply(TransliteratorBuilder $transliteratorBuilder): void
+{
+    $transliteratorBuilder->addSingleID(
+        new SingleID(
+            new BasicID(SpecialTag::ASCII, SpecialTag::Any),
+        )
+    );
+}
+```
+
+#### Conversion
+
+To add custom conversions from A to B, it is possible to add those directly;
+
+```php
+public function apply(TransliteratorBuilder $transliteratorBuilder): void
+{
+    $transliteratorBuilder->addConversion(
+        new Conversion('A', 'B')
+    );
+}
+```
+
+There are some extra parameters available here: `beforeContext`, `afterContext` and `resultToRevisit`. Those are currently undocumented here, but can be thoroughly read about in the ICU rule documentation.
+
+#### VariableDefinition
+
+Variables can be created to reuse them later. For example, if you want to reuse the string 'bar' a lot, you can create a named variable: 
+
+```php
+public function apply(TransliteratorBuilder $transliteratorBuilder): void
+{
+    $transliteratorBuilder->addVariableDefinition(
+        new VariableDefinition('foo', 'bar')
+    );
+}
+```
+
+Please note that variable names cannot be empty and cannot contain any special characters. If you do either of these the constructor of VariableDefinition will throw an exception warning you of such. Variable values will be automatically escaped if they contain any special characters.
+
+#### (Global) filters
+
+Global filters can technically be modified from the scope of a ConversionSet, but that should not be done. If ConversionSet A modifies the global filter, and then ConversionSet B modifies it, ConversionSet A will not function properly anymore. Instead, make sure to add a filter on SingleID level for each ID;
+
+```php
+public function apply(TransliteratorBuilder $transliteratorBuilder): void
+{
+    $transliteratorBuilder->addSingleID(
+        new SingleID(
+            new BasicID(SpecialTag::ASCII, SpecialTag::Any),
+            (new Filter())->addRange(new Character('a'), new Character('z'))
+        )
+    );
+}
+```
+
+#### ConversionSet nesting
+
+It is possible to nest conversion sets;
+
+```php
+public function apply(TransliteratorBuilder $transliteratorBuilder): void
+{
+    $transliteratorBuilder->applyConversionSet(new ToASCII());
+}
+```
+
+To prevent recursion it is not possible to use a ConversionSet that is already called in a ConversionSet chain. For example: it is possible to use A in B and B in C, but not A in B and B in A.
 
 ## Technical: Transliterator composition
 
