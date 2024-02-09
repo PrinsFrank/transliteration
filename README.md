@@ -63,7 +63,7 @@ In this example it's not clear where this package shines, so let's move on to so
 
 ### Script conversions
 
-Let's say we have a bunch of texts in arbitrary scripts, and I want to make sure that they can all be represented in ASCII.
+Let's say we have a bunch of texts in arbitrary scripts, and we want to make sure that they can all be represented in ASCII.
 
 ```php
 (new TransliteratorBuilder())
@@ -88,3 +88,74 @@ Behind the scenes the following ruleSet string gets created for you:
 `::Any-Latin;::Latin-ASCII;dʒ>g;kʰ>c;kʷ>qu;kᶣ>cu;ɫ>ll;ŋ>n;Ŋ>N;ɲ>n;Ɲ>N;pʰ>p;ʃ>sh;Ʃ>SH;tʰ>t;tʃ>ch;aː>a;Aː>A;ɛ>e;Ɛ>E;eː>a;Eː>A;ɪ>i;Ɪ>I;iː>i;Iː>I;ɔ>o;Ɔ>O;oː>aw;ʊ>u;Ʊ>U;ʌ>u;Ʌ>U;uː>u;yː>u;ae̯>igh;oe̯>oy;au̯>ow;ei̯>ay;ui̯>ui;`
 
 Let's ignore the resulting ruleSet strings for the rest of this documentation, as the goal of this package is to provide you an abstract but typed interface for the transliteration package, without requiring you to understand the underlying syntax.
+
+## Conversion sets
+
+Conversion sets are the biggest building blocks in this package. They can be applied by calling the `applyConversionSet` method for each set;
+
+```php
+(new TransliteratorBuilder())
+    ->applyConversionSet(new ToASCII())
+    ->applyConversionSet(new IPAToEnglishApproximation())
+```
+
+Or calling the `applyConversionSets` method with an array of conversion sets;
+
+```php
+(new TransliteratorBuilder())
+    ->applyConversionSets([
+        new ToASCII(),
+        new IPAToEnglishApproximation(),
+    ])
+```
+
+### Bundled conversion sets
+
+There are a bunch of conversion sets included in this package:
+
+| Name                                                                                                                                 | Inverse     | Description                                                                                             |
+|--------------------------------------------------------------------------------------------------------------------------------------|-------------|---------------------------------------------------------------------------------------------------------|
+| [IPAToEnglishApproximation](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/IPAToEnglishApproximation.php) |             | Replaces IPA characters in a string with an approximation of how the sounds would be written in English |
+| [IPAToXSampa](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/IPAToXSampa.php)                             | XSampaToIPA | Converts IPA notation to XSampa notation                                                                |
+| [Keep](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/Keep.php)                                           | Remove      | Keep only the characters or range(s) of characters set by the filter provided                           |
+| [Remove](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/Remove.php)                                       | Keep        | Remove all the characters or range(s) of characters set by the filter provided                          |
+| [Replace](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/Replace.php)                                     |             | Replace a string with another string                                                                    |
+| [ReplaceAll](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/ReplaceAll.php)                               |             | Replace a set of strings with another string                                                            |
+| [ScriptLanguage](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/ScriptLanguage.php)                       |             | Convert Between two scripts, languages or special tags                                                  |
+| [ToASCII](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/ToASCII.php)                                     |             | Convert to ASCII                                                                                        |
+| [ToScriptLanguage](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/ToScriptLanguage.php)                   |             | Convert to a script, language or special tag                                                            |
+| [XSampaToIPA](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/XSampaToIPA.php)                             | IPAToXSampa | Converts XSampa notation to IPA notation                                                                |
+
+### Creating a custom conversion set
+
+To create a custom conversion set, simply
+
+1. Add the [ConversionSet interface](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet.php) to your class;
+
+```php
+use PrinsFrank\Transliteration\ConversionSet;
+
+class CustomConversionSet implements ConversionSet
+{
+}
+```
+
+2. Add an implementation for the apply method;
+
+```php
+public function apply(TransliteratorBuilder $transliteratorBuilder): void
+{
+    // Add your code here
+}
+```
+
+3. And pass your new custom conversion to the transliteratorBuilder;
+
+```php
+(new TransliteratorBuilder())
+    ->applyConversionSet(new CustomConversionSet());
+```
+
+If the ConversionSet needs any arguments, you can implement a constructor and use those arguments in the apply method. For a simple example of this, see the [Replace](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/Replace.php) ConversionSet.
+
+
