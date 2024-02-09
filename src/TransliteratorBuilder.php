@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Transliteration;
 
+use PrinsFrank\Transliteration\Exception\RecursionException;
 use PrinsFrank\Transliteration\Syntax\Enum\TransliterationDirection;
 use PrinsFrank\Transliteration\Exception\InvalidArgumentException;
 use PrinsFrank\Transliteration\Exception\UnableToCreateTransliteratorException;
@@ -12,6 +13,7 @@ use PrinsFrank\Transliteration\Syntax\FormalId\SingleID;
 use PrinsFrank\Transliteration\Syntax\Rule\Components\Conversion;
 use PrinsFrank\Transliteration\Syntax\Rule\Components\VariableDefinition;
 use PrinsFrank\Transliteration\Syntax\Rule\RuleList;
+use PrinsFrank\Transliteration\Transliterator\RecursionHandler;
 use PrinsFrank\Transliteration\Transliterator\TypedTransliterator;
 use Transliterator;
 
@@ -24,6 +26,14 @@ class TransliteratorBuilder
     protected TransliterationDirection $direction = TransliterationDirection::FORWARD;
 
     protected Filter|null $globalFilter = null;
+
+    /** @internal to detect recursive ConversionSets before they hang a system */
+    protected readonly RecursionHandler $recursionHandler;
+
+    public function __construct()
+    {
+        $this->recursionHandler = new RecursionHandler($this);
+    }
 
     public function setDirection(TransliterationDirection $direction): static
     {
@@ -76,14 +86,18 @@ class TransliteratorBuilder
         return $this->conversions;
     }
 
+    /** @throws RecursionException */
     public function applyConversionSet(ConversionSet $conversionSet): static
     {
-        $conversionSet->apply($this);
+        $this->recursionHandler->applyConversionSet($conversionSet);
 
         return $this;
     }
 
-    /** @param list<ConversionSet> $conversionSets */
+    /**
+     * @param list<ConversionSet> $conversionSets
+     * @throws RecursionException
+     */
     public function applyConversionSets(array $conversionSets): static
     {
         foreach ($conversionSets as $conversionSet) {

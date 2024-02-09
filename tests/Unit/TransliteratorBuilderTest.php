@@ -143,13 +143,19 @@ class TransliteratorBuilderTest extends TestCase
         );
     }
 
-    /** @covers ::applyConversionSet */
+    /**
+     * @covers ::__construct
+     * @covers ::applyConversionSet
+     */
     public function testApplyConversionSet(): void
     {
         static::assertSame('bar', (new TransliteratorBuilder())->applyConversionSet(new Replace('foo', 'bar'))->transliterate('foo'));
     }
 
-    /** @covers ::applyConversionSets */
+    /**
+     * @covers ::__construct
+     * @covers ::applyConversionSets
+     */
     public function testApplyConversionSets(): void
     {
         static::assertSame('bar', (new TransliteratorBuilder())->applyConversionSets([new Replace('foo', 'bar')])->transliterate('foo'));
