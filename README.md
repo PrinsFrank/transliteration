@@ -210,7 +210,7 @@ When subsequently creating the transliterator - either by calling `getTransliter
 
 ```mermaid
 flowchart LR
-    node1[Is array of conversion empty?] -- yes --> InvalidArgumentException
+    node1[Is array of conversion empty?] -- yes --> UnableToCreateTransliteratorException
     node1 -- no --> node2[Contains something else as SingleID?]
     node2 -- yes --> RuleList
     node2 -- no --> node3[Has filter or multiple SingleIDs?]
