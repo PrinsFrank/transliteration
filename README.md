@@ -158,4 +158,64 @@ public function apply(TransliteratorBuilder $transliteratorBuilder): void
 
 If the ConversionSet needs any arguments, you can implement a constructor and use those arguments in the apply method. For a simple example of this, see the [Replace](https://github.com/PrinsFrank/transliteration/blob/main/src/ConversionSet/Replace.php) ConversionSet.
 
+## Technical: Transliterator composition
 
+To give users of this package a nice and readable argument list, the [formalIDSyntax](https://unicode-org.github.io/icu/userguide/transforms/general/#formal-id-syntax) to create a normal transliterator and the [TransformRuleSyntax](https://unicode-org.github.io/icu/userguide/transforms/general/rules.html#overview) have both been implemented in this package according to the specification. Their relations are as follows:
+
+```mermaid
+erDiagram
+    Transliterator ||--|| Conversion: ""
+    Transliterator ||--|| VariableDefinition: ""
+    Transliterator ||--o| Filter: ""
+    Transliterator ||--o| SingleID: ""
+    SingleID }|--|| BasicID: ""
+    SingleID }|--o| Filter: ""
+    BasicID }|--|| Target: ""
+    BasicID }|--o| Source: ""
+    BasicID }|--o| Variant: ""
+    Filter }|--o{ Character: ""
+
+    Conversion {
+        string textToReplace
+        string completedResult
+        string beforeContext
+        string afterContext
+        string resultToRevisit
+        string conversionDirection
+    }
+    
+    VariableDefinition {
+        string name
+        string value
+    }
+
+    Target {
+        class ScriptName
+        class ScriptAlias
+        class LanguageTag
+        class SpecialTag
+    }
+
+    Source {
+        class ScriptName
+        class ScriptAlias
+        class LanguageTag
+        class SpecialTag
+    }
+```
+
+When the transliterator is 'built' by calling `applyConversionSet`, `applyConversionSets`, `addSingleID`, `addConversion` or `AddVariableDefiniton`, the internal array `$conversions` is filled either directly, or by the conversionSet in the `apply` method.
+
+When subsequently creating the transliterator - either by calling `getTransliterator` or `transliterate` - this package checks the simplest type of transliterator that can be used:
+
+```mermaid
+flowchart LR
+    node1[Is array of conversion empty?] -- yes --> InvalidArgumentException
+    node1 -- no --> node2[Contains something else as SingleID?]
+    node2 -- yes --> RuleList
+    node2 -- no --> node3[Has filter or multiple SingleIDs?]
+    node3 -- yes --> node4[Wrap in CompoundID]
+    node3 -- no --> SingleID
+```
+
+RuleLists and CompoundID are not directly constructed, as you can't know with fluid notation if they will eventually be needed. For example: when adding a SingleID, and subsequently adding another SingleID, we should convert everything to a CompoundID. We can't know that while adding our first SingleID though. That's why the [CompoundID](https://github.com/PrinsFrank/transliteration/blob/main/src/Syntax/FormalId/CompoundID.php) and [RuleList](https://github.com/PrinsFrank/transliteration/blob/main/src/Syntax/Rule/RuleList.php) are virtual internal classes that are applied as wrappers at runtime (and hence marked as internal). The logic for this lives in the `transliterate`, `getTransliterator` and `containsRuleSyntax` methods in the [TranliteratorBuilder](https://github.com/PrinsFrank/transliteration/blob/main/src/TransliteratorBuilder.php) itself.
