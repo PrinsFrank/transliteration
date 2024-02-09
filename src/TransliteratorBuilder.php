@@ -27,7 +27,13 @@ class TransliteratorBuilder
 
     protected Filter|null $globalFilter = null;
 
+    /** @internal to detect recursive ConversionSets before they hang a system */
     protected readonly RecursionHandler $recursionHandler;
+
+    public function __construct()
+    {
+        $this->recursionHandler = new RecursionHandler($this);
+    }
 
     public function setDirection(TransliterationDirection $direction): static
     {
@@ -83,8 +89,7 @@ class TransliteratorBuilder
     /** @throws RecursionException */
     public function applyConversionSet(ConversionSet $conversionSet): static
     {
-        ($this->recursionHandler ??= new RecursionHandler($this))
-            ->applyConversionSet($conversionSet);
+        $this->recursionHandler->applyConversionSet($conversionSet);
 
         return $this;
     }

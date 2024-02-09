@@ -29,6 +29,7 @@ class RecursionHandlerTest extends TestCase
 
     /**
      * @covers ::applyConversionSet
+     *
      * @throws RecursionException
      */
     public function testApplyConversionSetWithoutRecursion(): void
