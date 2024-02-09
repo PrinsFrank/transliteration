@@ -11,7 +11,10 @@ use PrinsFrank\Transliteration\TransliteratorBuilder;
 /** @coversDefaultClass \PrinsFrank\Transliteration\Transliterator\RecursionHandler */
 class RecursionHandlerTest extends TestCase
 {
-    /** @covers ::applyConversionSet */
+    /**
+     * @covers ::__construct
+     * @covers ::applyConversionSet
+     */
     public function testApplyConversionSetWithRecursion(): void
     {
         $this->expectException(RecursionException::class);
