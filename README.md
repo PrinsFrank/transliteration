@@ -204,7 +204,7 @@ erDiagram
     }
 ```
 
-When the transliterator is 'built' by calling `applyConversionSet`, `applyConversionSets`, `addSingleID`, `addConversion` or `AddVariableDefiniton`, the internal array `$conversions` is filled either directly, or by the conversionSet in the `apply` method.
+When the transliterator is 'built' by calling `applyConversionSet`, `applyConversionSets`, `addSingleID`, `addConversion` or `AddVariableDefinition`, the internal array `$conversions` is filled either directly, or by the conversionSet in the `apply` method.
 
 When subsequently creating the transliterator - either by calling `getTransliterator` or `transliterate` - this package checks the simplest type of transliterator that can be used:
 
